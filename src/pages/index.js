@@ -4,6 +4,8 @@ import Hero from "../components/templates/Hero"
 import About from "../components/templates/About"
 import VideoTour from "../components/templates/VideoTour"
 import Showcase from "../components/templates/Showcase"
+import Awards from '../components/templates/Awards'
+import FeaturedCommunities from "../components/templates/FeaturedCommunities"
 
 const Index = ({ data }) => {
   return (
@@ -59,6 +61,20 @@ const Index = ({ data }) => {
             />
           )
         }
+        if(section.type === 'awards'){
+          return (
+            <Awards 
+              _key={i} 
+              heading={section.heading}
+              subHeading={section.subHeading}
+              backgroundImage={section.backgroundImage}
+              awards={section.awards} 
+            />
+          )
+        }
+        if(section.type ==='featuredCommunities' && section.show === true){
+          return <FeaturedCommunities _key={i}/>
+        }
         else{
           return null;
         }
@@ -104,6 +120,11 @@ export const IndexQuery = graphql`
               listItem
             }
             video
+            show
+            awards {
+              value
+              description
+            }
           }
         }
       }

@@ -11,7 +11,7 @@ const VideoTour = ({ _key, video, heading }) => {
             <video className="videoTour" autoplay="true" loop="true" muted="true" plays-inline="">
                 <source src={videoFile.default} type="video/mp4"/>
             </video>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-50">
                 <Overlay
                     button={
                         <div className="p-2 border-2 border-textLight/30 max-w-fit shadow-md rounded-sm">

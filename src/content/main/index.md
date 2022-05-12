@@ -50,6 +50,23 @@ sections:
   image: ../../images/showcaseImage2.png
   imagePosition: right
   addPadding: bottom
+- type: awards
+  heading: Awards & Recognition.
+  subHeading: Merits we have earned
+  backgroundImage: ../../images/awardsBackground.png
+  awards:
+  - value: '57+'
+    description: Completed Projects
+  - value: '105'
+    description: Joint ventures completed
+  - value: '10'
+    description: Years experience
+  - value: '35'
+    description: Green buildings under construction
+  - value: '25'
+    description: Cities
+- type: featuredCommunities
+  show: true
 ---
 
 [comment]: # (Image files must be relative path to current directory for Image Sharp processing. Example: ../../images/image.jpg)

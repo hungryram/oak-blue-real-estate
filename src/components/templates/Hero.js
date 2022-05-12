@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { Link } from 'gatsby'
-import { BsArrowRight } from 'react-icons/bs'
-
+import Button from '../ui/Button'
 const Hero = ({ _key, backgroundImage, heading, buttonText, buttonLink }) => {
     return(
 
@@ -12,13 +10,11 @@ const Hero = ({ _key, backgroundImage, heading, buttonText, buttonLink }) => {
                 <h1 className="text-textLight text-5xl font-semibold">
                     {heading}
                 </h1>
-                <Link 
-                    to={buttonLink}
-                    className="button mt-12"
-                >
-                    {buttonText}
-                    <BsArrowRight className="ml-4" />
-                </Link>
+                <Button 
+                    link={buttonLink}
+                    text={buttonText}
+                    className="mt-12"
+                />
             </div>
         </div>
 

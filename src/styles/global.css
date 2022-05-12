@@ -21,6 +21,10 @@ html {
     font-family: PlayfairDisplay;
 }
 
+h1,h2,h3,h4,h5{
+    @apply tracking-wide;
+}
+
 .navLogo{
     @apply absolute top-1/2 left-1/2 transform -translate-y-16 -translate-x-1/2 w-3/5;
 }
@@ -73,4 +77,8 @@ html {
 
 .overlayButton{
     @apply rounded-full p-1 bg-white absolute top-2 right-4 cursor-pointer;
+}
+
+.featuredCommunityGalleryImage{
+    height: 500px;
 }

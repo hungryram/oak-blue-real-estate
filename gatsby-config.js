@@ -50,5 +50,13 @@ module.exports = {
     },
     __key: "main"
   },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "communities",
+      "path": `${__dirname}/src/content/communities`
+    },
+    __key: "communities"
+  },
 ]
 };
