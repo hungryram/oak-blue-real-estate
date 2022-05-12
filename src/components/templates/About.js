@@ -21,8 +21,8 @@ const About = ({ _key, heading, subHeading, caption, list, images, buttonText, b
     }
 
     return(
-        <div key={_key} className="flex flex-row p-10 bg-background">
-            <div className="flex flex-col w-2/5 ml-8 mt-8">
+        <div key={_key} className="flex flex-row py-20 bg-background max-w-screen-xxl mx-auto">
+            <div className="flex flex-col w-2/5 ml-auto mr-20 my-auto">
                 <div className="max-w-fit">
                     <h2 className="uppercase text-xl text-primary font-semibold">{heading}</h2>
                     <h1 className="text-3xl font-bold pb-2 border-b border-primary">{subHeading}</h1>
@@ -40,18 +40,18 @@ const About = ({ _key, heading, subHeading, caption, list, images, buttonText, b
                 </ul>
                 <Link 
                     to={buttonLink}
-                    className="my-auto bg-primary filter hover:brightness-90 flex flex-row items-center py-3 px-7 text-base text-textLight rounded-md max-w-fit"
+                    className="button mt-12 mb-auto"
                 >
                     {buttonText}
                     <BsArrowRight className="ml-4" />
                 </Link>
             </div>
-            <div className={`w-3/5 ml-8 grid ${galleryCols}`}>
+            <div className={`w-2/5 mr-auto ml-8 grid ${galleryCols}`}>
                 {images.map((image, i) => {
                     return(
                         <GatsbyImage 
                             key={i}
-                            className="m-8 rounded-sm"
+                            className="m-4 rounded-sm"
                             image={image.image.childImageSharp.gatsbyImageData} 
                             alt={`About Our Real Estate Image ${i}`}
                         />

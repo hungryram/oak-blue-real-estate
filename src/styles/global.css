@@ -17,6 +17,7 @@
 }
 
 html {
+    @apply overflow-x-hidden;
     font-family: PlayfairDisplay;
 }
 
@@ -37,7 +38,7 @@ html {
 }
 
 .subMenu{
-    @apply absolute top-6 -left-2 w-60 p-2 bg-background -z-10 flex flex-col;
+    @apply absolute top-6 -left-2 w-60 p-2 bg-background -z-10 flex flex-col rounded-sm shadow-sm;
 }
 
 .subMenuItem{
@@ -45,11 +46,15 @@ html {
 }
 
 .heroWrapper{
-    @apply relative;
+    @apply relative w-full;
 }
 
 .heroContent{
     @apply flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full;
+}
+
+.button{
+    @apply bg-primary filter hover:brightness-90 flex flex-row items-center py-3 px-7 text-lg text-textLight rounded-md max-w-fit transition-colors;
 }
 
 .videoTourWrapper {
@@ -60,4 +65,12 @@ html {
 .videoTour{
     @apply w-full overflow-y-hidden absolute top-1/2 -translate-y-1/2;
     z-index: -1;
+}
+
+.overlay{
+    @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-screen bg-black/90;
+}
+
+.overlayButton{
+    @apply rounded-full p-1 bg-white absolute top-2 right-4 cursor-pointer;
 }

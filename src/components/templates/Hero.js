@@ -7,14 +7,14 @@ const Hero = ({ _key, backgroundImage, heading, buttonText, buttonLink }) => {
     return(
 
         <div key={_key} className="heroWrapper">
-            <GatsbyImage image={backgroundImage.childImageSharp.gatsbyImageData} className="h-full" loading="eager" alt="Hero Image"/>
+            <GatsbyImage image={backgroundImage.childImageSharp.gatsbyImageData} className="w-full" loading="eager" alt="Hero Image"/>
             <div className="heroContent">
                 <h1 className="text-textLight text-5xl font-semibold">
                     {heading}
                 </h1>
                 <Link 
                     to={buttonLink}
-                    className="mt-12 bg-primary filter hover:brightness-90 flex flex-row items-center py-3 px-7 text-base text-textLight rounded-md"
+                    className="button mt-12"
                 >
                     {buttonText}
                     <BsArrowRight className="ml-4" />

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Hero from "../components/templates/Hero"
 import About from "../components/templates/About"
 import VideoTour from "../components/templates/VideoTour"
+import Showcase from "../components/templates/Showcase"
 
 const Index = ({ data }) => {
   return (
@@ -35,14 +36,27 @@ const Index = ({ data }) => {
         }
         if(section.type === 'videoTour'){
           return(
-            <>
             <VideoTour 
               _key={i}
               heading={section.heading}
               video={section.video}
             />
-            <div className="h-80 w-full bg-background"></div>
-            </>
+          )
+        }
+        if(section.type === 'showcase'){
+          return(
+            <Showcase
+              _key={i}
+              heading={section.heading}
+              subHeading={section.subHeading}
+              caption={section.caption}
+              textBlocks={section.textBlocks}
+              buttonText={section.buttonText}
+              buttonLink={section.buttonLink}
+              image={section.image}
+              imagePosition={section.imagePosition}
+              addPadding={section.addPadding}
+            />
           )
         }
         else{
@@ -63,6 +77,7 @@ export const IndexQuery = graphql`
             heading
             subHeading
             caption
+            textBlocks
             buttonText
             buttonLink
             backgroundImage {
@@ -78,6 +93,13 @@ export const IndexQuery = graphql`
                 }
               }
             }
+            image {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            imagePosition
+            addPadding
             list {
               listItem
             }
