@@ -1,0 +1,13 @@
+{
+    "branding": {
+      "logo": "../images/logo-1.png",
+      
+      "colors": {
+          "primary": "#254C9A",
+          "accent": "#079BE0",
+          "background": "#FFFFFF",
+          "textLight": "#FFFFFF",
+          "textDark": "#000000"
+      }
+    }
+  }

@@ -1,20 +1,92 @@
 import * as React from "react"
-import Layout from "../components/global/Layout"
+import { graphql } from "gatsby"
+import Hero from "../components/templates/Hero"
+import About from "../components/templates/About"
+import VideoTour from "../components/templates/VideoTour"
 
-const IndexPage = () => {
+const Index = ({ data }) => {
   return (
     <>
-      <Layout>
-        <div className="container mx-auto">
-          <div className="grid grid-cols-4">
-            <div className="bg-red-200 rounded-md p-4 border-2 border-red-500">
-                <h2 className="title-font">First Box</h2>
-            </div>
-          </div>
-        </div>
-      </Layout>
+      {data.file.childMarkdownRemark.frontmatter.sections.map((section, i) => {
+        if(section.type === 'hero'){
+          return(
+            <Hero 
+              _key={i}
+              heading={section.heading}
+              buttonText={section.buttonText}
+              buttonLink={section.buttonLink}
+              backgroundImage={section.backgroundImage} 
+            />
+          )
+        }
+        if(section.type === 'about'){
+          return(
+            <About 
+              _key={i}
+              heading={section.heading}
+              subHeading={section.subHeading}
+              caption={section.caption}
+              list={section.list}
+              images={section.images}
+              buttonText={section.buttonText}
+              buttonLink={section.buttonLink}
+            />
+          )
+        }
+        if(section.type === 'videoTour'){
+          return(
+            <>
+            <VideoTour 
+              _key={i}
+              heading={section.heading}
+              video={section.video}
+            />
+            <div className="h-80 w-full bg-background"></div>
+            </>
+          )
+        }
+        else{
+          return null;
+        }
+      })}
     </>
   )
 }
 
-export default IndexPage
+export const IndexQuery = graphql`
+  query {
+    file(sourceInstanceName: {eq: "main"}, name: {eq: "index"}){
+      childMarkdownRemark {
+        frontmatter {
+          sections {
+            type
+            heading
+            subHeading
+            caption
+            buttonText
+            buttonLink
+            backgroundImage {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            images {
+              altText
+              image {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+            list {
+              listItem
+            }
+            video
+          }
+        }
+      }
+  	}
+  }
+`
+
+export default Index

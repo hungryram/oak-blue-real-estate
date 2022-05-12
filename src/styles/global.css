@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+    @font-face {
+        font-family: PlayfairDisplay;
+        src: url('../assets/fonts/PlayfairDisplay.ttf');
+    }
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: PlayfairDisplay;
+}
+
+.navLogo{
+    @apply absolute top-1/2 left-1/2 transform -translate-y-16 -translate-x-1/2 w-3/5;
+}
+
+.navMenu{
+    @apply flex flex-row items-center h-full space-x-12 uppercase font-semibold absolute left-1/2 -translate-x-1/2;
+}
+
+.navContact{
+    @apply absolute top-1/2 -translate-y-1/2 right-2 lg:right-16 xl:right-32 flex flex-row items-center;
+}
+
+.menuItem{
+    @apply relative flex flex-row items-center cursor-pointer hover:text-primary;
+}
+
+.subMenu{
+    @apply absolute top-6 -left-2 w-60 p-2 bg-background -z-10 flex flex-col;
+}
+
+.subMenuItem{
+    @apply text-textDark hover:text-primary font-medium text-base;
+}
+
+.heroWrapper{
+    @apply relative;
+}
+
+.heroContent{
+    @apply flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full;
+}
+
+.videoTourWrapper {
+    @apply relative bg-black/60;
+    height: 700px;
+}
+
+.videoTour{
+    @apply w-full overflow-y-hidden absolute top-1/2 -translate-y-1/2;
+    z-index: -1;
+}

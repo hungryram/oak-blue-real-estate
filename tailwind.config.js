@@ -1,9 +1,20 @@
+const appearance = require('./src/data/appearance.json')
+const colors = appearance.branding.colors
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    colors: {
+      "primary": colors.primary,
+      "accent": colors.accent,
+      "background": colors.background,
+      "textLight": colors.textLight,
+      "textDark": colors.textDark,
+      "black": '#000000',
+      "white": "#FFFFFF"
+    }
   },
   plugins: [],
 }

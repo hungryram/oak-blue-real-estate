@@ -3,24 +3,52 @@ module.exports = {
     title: `oak-blue-real-estate`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", "gatsby-plugin-postcss", {
-    resolve: 'gatsby-plugin-manifest',
-    options: {
-      "icon": "src/images/icon.png"
-    }
-  }, "gatsby-transformer-remark", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
+  plugins: [
+    "gatsby-plugin-image", 
+    "gatsby-plugin-react-helmet", 
+    "gatsby-plugin-sitemap", 
+    "gatsby-plugin-postcss", 
+    //{
+    //resolve: 'gatsby-plugin-manifest',
+    //options: {
+      //"icon": "src/images/icon.png"
+   // }
+   // }, 
+  "gatsby-transformer-remark", 
+  "gatsby-transformer-sharp",
+  "gatsby-plugin-sharp", 
+  "gatsby-transformer-json",
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
-      "path": "./src/images/"
+      "path": `${__dirname}/src/data`
+    },
+    __key: "data"
+  }, 
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "images",
+      "path": `${__dirname}/src/images`
     },
     __key: "images"
-  }, {
+  }, 
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "pages",
-      "path": "./src/pages/"
+      "path": `${__dirname}/src/pages`
     },
     __key: "pages"
-  }]
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      "name": "main",
+      "path": `${__dirname}/src/content/main`,
+    },
+    __key: "main"
+  },
+]
 };
