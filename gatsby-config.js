@@ -58,5 +58,6 @@ module.exports = {
     },
     __key: "communities"
   },
+  'gatsby-plugin-netlify'
 ]
 };
