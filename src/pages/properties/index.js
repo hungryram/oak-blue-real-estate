@@ -43,6 +43,10 @@ const PropertiesIndex = ({ data }) => {
         else if(searchCity === "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max === null){
             setFilteredProperties(data.idx.nodes.filter(property => property.states === searchState))
         }
+        // Search By City And State Only
+        else if(searchCity !== "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && property.states === searchState))
+        }
         // Search By Price Range Only
         else if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min !== null && searchPrice.max !== null){
             setFilteredProperties(data.idx.nodes.filter(property => parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
