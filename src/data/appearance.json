@@ -1,7 +1,8 @@
 {
+    "_type" : "appearance",
     "branding": {
-      "logo": "../images/logo-1.png",
-      
+      "logoDark": "../images/logo-1.png",
+      "logoLight": "../images/logo-1-white.png",
       "colors": {
           "primary": "#254C9A",
           "accent": "#079BE0",

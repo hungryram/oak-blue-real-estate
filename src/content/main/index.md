@@ -2,8 +2,8 @@
 sections:
 - type: hero
   heading: OAK BLUE Real Estate
-  buttonText: View Projects
-  buttonLink: /projects
+  buttonText: View Properties
+  buttonLink: /properties
   backgroundImage: ../../images/heroImage.png
 - type: about
   heading: Who We Are
@@ -67,6 +67,22 @@ sections:
     description: Cities
 - type: featuredCommunities
   show: true
+- type: testimonials
+  heading: Our Testimonials
+  subHeading: What They Say
+  testimonials:
+  - name: Scarlett Johansson
+    caption: CEO at Xion
+    testimonial: Egestas sed morbi arcu diam. Gravida id purus nisl volutpat vulputate sed consectetur. Et in ut lacinia vitae eget diam quam a vitae. At congue lacus erat nunc velit placerat neque. Imperdiet nibh in at interdum vel. Sagittis mattis phasellus rhoncus, proin nisl ipsum. Ut amet, mauris, ut ipsum aenean euismod. 
+    image: ../../images/testimonial1.png
+  - name: Chris Hemsworth
+    caption: Happy Oak Blue Client
+    testimonial: Et in ut lacinia vitae eget diam quam a vitae. At congue lacus erat nunc velit placerat neque. Egestas sed morbi arcu diam. Gravida id purus nisl volutpat vulputate sed consectetur. Imperdiet nibh in at interdum vel. Sagittis mattis phasellus rhoncus, proin nisl ipsum. Ut amet, mauris, ut ipsum aenean euismod. 
+    image: ../../images/testimonial2.jpg
+  - name: Samuel Jackson
+    caption: Happy Oak Blue Client
+    testimonial: Sagittis mattis phasellus rhoncus, proin nisl ipsum. Ut amet, mauris, ut ipsum aenean euismod. Egestas sed morbi arcu diam. Gravida id purus nisl volutpat vulputate sed consectetur. Et in ut lacinia vitae eget diam quam a vitae. At congue lacus erat nunc velit placerat neque. Imperdiet nibh in at interdum vel.  
+    image: ../../images/testimonial3.jpg
 ---
 
 [comment]: # (Image files must be relative path to current directory for Image Sharp processing. Example: ../../images/image.jpg)

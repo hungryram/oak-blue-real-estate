@@ -34,7 +34,7 @@ const FeaturedCommunities = ({ _key }) => {
                 <ul className="grid grid-cols-2 mt-20">
                     {communities.map((community, i) => {
                         return(
-                            <Link to={community.slug} key={i} className="flex flex-col m-4">
+                            <Link to={`/communities${community.slug}`} key={i} className="flex flex-col m-4">
                                 <GatsbyImage 
                                     image={community.image.childImageSharp.gatsbyImageData} 
                                     className="featuredCommunityGalleryImage"
@@ -51,7 +51,7 @@ const FeaturedCommunities = ({ _key }) => {
                         )
                     })}
                 </ul>
-                <Button link="" text="View All Communities"/>
+                <Button link="/communities" text="View All Communities"/>
             </div>
         </div>
     )

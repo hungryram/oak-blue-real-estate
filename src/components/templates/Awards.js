@@ -2,7 +2,6 @@ import * as React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 const Awards = ({ _key, awards, heading, subHeading, backgroundImage }) => {
-    console.log(awards)
     return(
         <div key={_key} className="relative h-96">
             <GatsbyImage className="bg-primary h-full" image={backgroundImage.childImageSharp.gatsbyImageData} alt="Awards & Recognition background"/>

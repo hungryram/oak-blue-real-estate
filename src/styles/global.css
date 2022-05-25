@@ -9,6 +9,11 @@
         src: url('../assets/fonts/PlayfairDisplay.ttf');
     }
 
+    @font-face {
+        font-family: DMSans;
+        src: url('../assets/fonts/DMSans-Regular.ttf')
+    }
+
 }
 
 * {
@@ -19,6 +24,10 @@
 html {
     @apply overflow-x-hidden;
     font-family: PlayfairDisplay;
+}
+
+.text-secondary {
+    font-family: DMSans;
 }
 
 h1,h2,h3,h4,h5{
@@ -81,4 +90,20 @@ h1,h2,h3,h4,h5{
 
 .featuredCommunityGalleryImage{
     height: 500px;
+}
+
+.testimonialWrapper {
+    height: 500px;
+}
+
+.socialLink {
+    @apply p-2 rounded-full text-xl bg-background text-textDark hover:text-accent transition-colors;
+}
+
+.formInput {
+    @apply text-secondary text-lg border border-textDark/50 rounded-lg px-2 py-1;
+}
+
+textarea { 
+    resize: none; 
 }

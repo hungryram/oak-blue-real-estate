@@ -1,14 +1,15 @@
-{
+{ 
+    "_type": "profile",
     "company_name": "Oak Blue Real Estate",
     "social_media": {
-      "instagram": "https://www.instagram.com",
+      "instagram": "oakblueInstagram",
       "twitter": null,
-      "facebook": "https://www.facebook.com",
-      "pinterest": null,
+      "facebook": "oakblueFacebook",
+      "pinterest": "oakbluePinterest",
       "yelp": null,
       "linkedin": null,
       "tiktok": null,
-      "youtube": "https://www.youtube.com"
+      "youtube": "oakBlueYoutube"
     },
     "contact_information": {
       "name": "Agent One",
@@ -19,8 +20,7 @@
       "address": "123 Real Estate St",
       "city": "City",
       "state": "State",
-      "zip_code": "98765",
-      "google_page_link": null
+      "zip_code": "98765"
     },
     "search_engine_optimization": {
       "title_tag": "Oak Blue Real Estate",

@@ -6,6 +6,7 @@ import VideoTour from "../components/templates/VideoTour"
 import Showcase from "../components/templates/Showcase"
 import Awards from '../components/templates/Awards'
 import FeaturedCommunities from "../components/templates/FeaturedCommunities"
+import Testimonials from "../components/templates/Testimonials"
 
 const Index = ({ data }) => {
   return (
@@ -75,6 +76,16 @@ const Index = ({ data }) => {
         if(section.type ==='featuredCommunities' && section.show === true){
           return <FeaturedCommunities _key={i}/>
         }
+        if(section.type === 'testimonials'){
+          return (
+            <Testimonials 
+              _key={i}
+              heading={section.heading} 
+              subHeading={section.subHeading} 
+              testimonials={section.testimonials} 
+            />
+          )
+        }
         else{
           return null;
         }
@@ -124,6 +135,16 @@ export const IndexQuery = graphql`
             awards {
               value
               description
+            }
+            testimonials {
+              name
+              caption
+              testimonial
+              image {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
           }
         }

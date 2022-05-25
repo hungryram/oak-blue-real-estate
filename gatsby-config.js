@@ -53,10 +53,34 @@ module.exports = {
   {
     resolve: 'gatsby-source-filesystem',
     options: {
+      "name": "properties",
+      "path": `${__dirname}/src/content/properties`
+    },
+    __key: "properties"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "blog",
+      "path": `${__dirname}/src/content/blog`
+    },
+    __key: "blog"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
       "name": "communities",
       "path": `${__dirname}/src/content/communities`
     },
     __key: "communities"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "contact",
+      "path": `${__dirname}/src/content/contact`
+    },
+    __key: "contact"
   },
   'gatsby-plugin-netlify'
 ]

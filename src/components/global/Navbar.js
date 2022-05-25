@@ -10,9 +10,9 @@ const Navbar = () => {
 
     const query = useStaticQuery(graphql`
         {
-          dataJson {
+          dataJson(_type: {eq: "appearance"}) {
              branding {
-                logo {
+                logoDark {
                     childImageSharp {
                         gatsbyImageData(placeholder: NONE, quality: 100)
                     }
@@ -25,23 +25,24 @@ const Navbar = () => {
     const [ subMenu, setSubMenu ] = React.useState(null)
 
     return (
-        <nav className="relative w-full h-24 bg-background z-10">
-            <div className="absolute top-0 left-2 lg:left-16 xl:left-32">
+        <nav className="relative w-full h-24 bg-background z-50">
+            <Link to="/" className="absolute top-0 left-2 lg:left-16 xl:left-32">
                 <svg height="154" width="175">
                     <polygon className="fill-background" points="0 0, 175 0, 175 110,  87.5 154, 0 110" />
                 </svg>
                 <GatsbyImage 
-                    image={query.dataJson.branding.logo.childImageSharp.gatsbyImageData}
+                    image={query.dataJson.branding.logoDark.childImageSharp.gatsbyImageData}
                     loading="eager"
                     className="navLogo"
                     alt={`${profile.company_name} logo`}
                 />
-            </div>
+            </Link>
             <ul className="navMenu">
-                {menu.map((menuItem, i) => {
+                {menu.menuLinks.map((menuItem, i) => {
                     if(menuItem.subMenu){
                         return(
-                            <li 
+                            <Link
+                                to={menuItem.link} 
                                 className="menuItem"
                                 key={i}
                                 onMouseEnter={() => setSubMenu(menuItem.subMenu)}
@@ -50,23 +51,23 @@ const Navbar = () => {
                                 {menuItem.name}
                                 <BiCaretDown className="ml-2 text-textDark"/>
                                 {menuItem.subMenu === subMenu ?
-                                        <ul className="subMenu">
+                                        <div className="subMenu">
                                             {menuItem.subMenu.map((menuItem, i) => {
                                                 return(
-                                                    <li className="subMenuItem" key={i}>
+                                                    <Link to={menuItem.link} className="subMenuItem" key={i}>
                                                         {menuItem.name}
-                                                    </li>
+                                                    </Link>
                                                 )
                                             })}
-                                        </ul>
+                                        </div>
                                 : null}
-                            </li>
+                            </Link>
                         )
                     }
                     else{
                         return(
                             <Link 
-                                to={menu.link}
+                                to={menuItem.link}
                                 className="cursor-pointer"
                                 key={i}
                             >

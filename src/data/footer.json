@@ -1,0 +1,54 @@
+{
+  "_type" : "footer",
+  "about_us": [
+    {
+      "name": "How It Works",
+      "link": "/how-it-works"
+    },
+    {
+      "name": "Meet Our Team",
+      "link": "/meet-our-team"
+    },
+    {
+      "name": "Help Desk",
+      "link": "/help-desk"
+    },
+    {
+      "name": "Plans & Pricing",
+      "link": "/plans-and-pricing"
+    }
+  ],
+  "quick_links": [
+    {
+      "name": "Home",
+      "link": "/"
+    },
+    {
+      "name": "Properties",
+      "link": "/properties"
+    },
+    {
+      "name": "Blog",
+      "link": "/blog"
+    },
+    {
+      "name": "Contact Us",
+      "link": "/contact"
+    }
+  ],
+  "footerIcons": [
+    {
+      "icon": "../images/footerIcon1.png"
+    },
+    {
+      "icon": "../images/footerIcon2.png"
+    },
+    {
+      "icon": "../images/footerIcon3.png"
+    },
+    {
+      "icon": "../images/footerIcon4.png"
+    }
+  ],
+  "footerImage": "../images/footerBg.jpg"
+}

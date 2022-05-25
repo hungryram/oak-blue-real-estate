@@ -1,33 +1,36 @@
-[
-  {
-    "name": "Home",
-    "link": "/",
-    "subMenu": null
-  },
-  {
-    "name": "Properties",
-    "link": "/properties",
-    "subMenu": [
-      {
-        "name": "Properties Item 1",
-        "link": "/",
-        "subMenu": null
-      }
-    ]
-  },
-  {
-    "name": "Blog",
-    "link": "/blog",
-    "subMenu": null
-  },
-  {
-    "name": "About",
-    "link": "/about",
-    "subMenu": null
-  },
-  {
-    "name": "Contact",
-    "link": "/contact",
-    "subMenu": null
-  }
-]
+{
+  "_type" : "menu",
+  "menuLinks" : [
+    {
+      "name": "Home",
+      "link": "/",
+      "subMenu": null
+    },
+    {
+      "name": "Properties",
+      "link": "/properties",
+      "subMenu": [
+        {
+          "name": "View Properties",
+          "link": "/properties",
+          "subMenu": null
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "link": "/blog",
+      "subMenu": null
+    },
+    {
+      "name": "About",
+      "link": "/about",
+      "subMenu": null
+    },
+    {
+      "name": "Contact",
+      "link": "/contact",
+      "subMenu": null
+    }
+  ]
+}
