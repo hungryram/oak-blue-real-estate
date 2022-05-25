@@ -121,7 +121,12 @@ const PropertiesIndex = ({ data }) => {
     }, [ pages ])
 
     React.useEffect(() => {
-        scrollTo('pageHeader')
+        if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max === null){
+            null
+        }
+        else {
+            scrollTo('pageHeader')
+        } 
     }, [ page ])
 
     return(
