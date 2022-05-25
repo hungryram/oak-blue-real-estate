@@ -112,7 +112,7 @@ const Footer = () => {
             <GatsbyImage 
                 image={query.footer.footerImage.childImageSharp.gatsbyImageData} 
                 alt={`${profile.company_name} footer background`} 
-                className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 h-full w-full" 
+                className="gatsbyImageBg" 
             />
             </div>
             <div className="flex flex-row items-center max-w-screen-2xl mx-auto p-4">

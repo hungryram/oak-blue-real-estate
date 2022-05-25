@@ -33,7 +33,7 @@ const PageHeader = ({ image, title, subTitle }) => {
                 image={image} 
                 loading="eager"
                 alt={`${title} page header`} 
-                className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 h-full w-full"
+                className="gatsbyImageBg"
             />
         </div>
     )
