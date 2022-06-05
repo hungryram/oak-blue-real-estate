@@ -13,7 +13,9 @@ const Gallery = ({ photos, title }) => {
 
     React.useEffect(() => {
         if(display >= 0 && display < length - 4){
-            setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
+            return () => {
+                setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
+            }    
         } 
         else if(display >= length - 5){
             const dif = length - display
