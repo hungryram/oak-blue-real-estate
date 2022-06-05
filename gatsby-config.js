@@ -1,19 +1,36 @@
+const appearance = require('./src/data/appearance.json')
+const colors = appearance.branding.colors
+
 module.exports = {
   siteMetadata: {
-    title: `oak-blue-real-estate`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: "Oak Blue Real Estate",
+    description: 'Oak Blue Real Estate Website',
+    keywords: "real estate, oak blue",
+    siteUrl: "https://www.oakbluerealestate.com"
   },
   plugins: [
     "gatsby-plugin-image", 
     "gatsby-plugin-react-helmet", 
     "gatsby-plugin-sitemap", 
     "gatsby-plugin-postcss", 
-    //{
-    //resolve: 'gatsby-plugin-manifest',
-    //options: {
-      //"icon": "src/images/icon.png"
-   // }
-   // }, 
+    {
+    resolve: 'gatsby-plugin-manifest',
+    options: {
+      name: "Oak Blue Real Estate",
+      short_name: `Oak Blue`,
+      background_color: colors.background,
+      lang: `en`,
+      theme_color: colors.primary,
+      start_url: `/`,
+      display: `standalone`,
+      cache_busting_mode: "none",
+      icon: "src/images/logo-1.png",
+      include_favicon: true,
+      icon_options: {
+        purpose: `any maskable`,
+      },
+    }
+  }, 
   "gatsby-transformer-remark", 
   "gatsby-transformer-sharp",
   "gatsby-plugin-sharp", 
@@ -61,6 +78,14 @@ module.exports = {
   {
     resolve: 'gatsby-source-filesystem',
     options: {
+      "name": "team",
+      "path": `${__dirname}/src/content/team`
+    },
+    __key: "team"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
       "name": "blog",
       "path": `${__dirname}/src/content/blog`
     },
@@ -81,6 +106,14 @@ module.exports = {
       "path": `${__dirname}/src/content/contact`
     },
     __key: "contact"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "about",
+      "path": `${__dirname}/src/content/about`
+    },
+    __key: "about"
   },
   'gatsby-plugin-netlify'
 ]

@@ -2,7 +2,7 @@
 title: 5 Tools Everyone In The Real Estate Industry Should Be Using
 excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis et sem sed sollicitudin. Donec non odio neque. Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.
 featuredImage: ../../images/bathroom-bg3.jpg
-date: "2022-06-15T00:00:00Z"
+date: 2022-06-15T00:00:00Z
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis et sem sed sollicitudin. Donec non odio neque. Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.&nbsp;**Quisque bibendum orci ac nibh facilisis**, at malesuada orci congue. Nullam tempus sollicitudin cursus. Ut et adipiscing erat. Curabitur&nbsp;[this is a text link](https://magzilla10.favethemes.com/wp/magzilla/demo02/introducing-a-revolutionary-method-to-master-make-up/)&nbsp;libero tempus congue.

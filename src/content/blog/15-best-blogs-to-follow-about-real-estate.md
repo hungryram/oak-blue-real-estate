@@ -2,7 +2,7 @@
 title: 15 Best Blogs To Follow About Real Estate
 excerpt: Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu.
 featuredImage: ../../images/featuredone.jpg
-date: "2022-05-09T00:00:00Z"
+date: 2022-05-09T00:00:00Z
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis et sem sed sollicitudin. Donec non odio neque. Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.&nbsp;**Quisque bibendum orci ac nibh facilisis**, at malesuada orci congue. Nullam tempus sollicitudin cursus. Ut et adipiscing erat. Curabitur&nbsp;[this is a text link](https://magzilla10.favethemes.com/wp/magzilla/demo02/introducing-a-revolutionary-method-to-master-make-up/)&nbsp;libero tempus congue.

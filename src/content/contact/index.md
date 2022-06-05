@@ -1,4 +1,4 @@
 ---
 title: Contact
-headerImage: ../../images/contactHeader.png
+headerImage: ../../images/aboutHeader.png
 ---

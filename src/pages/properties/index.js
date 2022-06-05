@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import PageHeader from '../../components/templates/PageHeader'
 import PropertyCard from '../../components/templates/PropertyCard'
 import { scrollTo } from '../../hooks'
+import Seo from '../../components/global/Seo'
 
 const PropertiesIndex = ({ data }) => {
 
@@ -14,7 +15,7 @@ const PropertiesIndex = ({ data }) => {
     const [ filteredProperties, setFilteredProperties ] = React.useState(data.idx.nodes)
 
     let cities = []
-    let states = []
+    let zipCodes = []
 
     if(data.idx.nodes){
         function uniq(a) {
@@ -22,73 +23,73 @@ const PropertiesIndex = ({ data }) => {
                 return !pos || item !== ary[pos - 1];
             });
         }
-        cities = uniq(data.idx.nodes.map(node => node.cities)).sort()
-        states = uniq(data.idx.nodes.map(node => node.states)).sort()
+        cities = uniq(data.idx.nodes.map(node => node.city)).sort()
+        zipCodes = uniq(data.idx.nodes.map(node => node.zipCode)).sort()
     }
 
     const [ searchCity, setSearchCity ] = React.useState("Search By City")
-    const [ searchState, setSearchState ] = React.useState("Search By State")
+    const [ searchZip, setSearchZip ] = React.useState("Search By Zip Code")
     const [ searchPrice, setSearchPrice ] = React.useState({min: null, max: null})
 
     React.useEffect(() => {
         // Search All
-        if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max === null){
+        if(searchCity === "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min === null && searchPrice.max === null){
             setFilteredProperties(data.idx.nodes)
         }
         // Search By City Only
-        else if(searchCity !== "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity))
+        else if(searchCity !== "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min === null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity))
         }
-        // Search By State Only
-        else if(searchCity === "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.states === searchState))
+        // Search By Zip Code Only
+        else if(searchCity === "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min === null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.zipCode === searchZip))
         }
-        // Search By City And State Only
-        else if(searchCity !== "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && property.states === searchState))
+        // Search By City And Zip Code Only
+        else if(searchCity !== "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min === null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && property.zipCode === searchZip))
         }
         // Search By Price Range Only
-        else if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min !== null && searchPrice.max !== null){
+        else if(searchCity === "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min !== null && searchPrice.max !== null){
             setFilteredProperties(data.idx.nodes.filter(property => parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         }
-        else if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min !== null && searchPrice.max === null){
+        else if(searchCity === "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min !== null && searchPrice.max === null){
             setFilteredProperties(data.idx.nodes.filter(property => parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
         }
-        else if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max !== null){
+        else if(searchCity === "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min === null && searchPrice.max !== null){
             setFilteredProperties(data.idx.nodes.filter(property => parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         }
         // Search By City And Price Range
-        else if(searchCity !== "Search By City" && searchState === "Search By State" && searchPrice.min !== null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        else if(searchCity !== "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min !== null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         }    
-        else if(searchCity !== "Search By City" && searchState === "Search By State" && searchPrice.min !== null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
+        else if(searchCity !== "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min !== null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
         }  
-        else if(searchCity !== "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        else if(searchCity !== "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min === null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         } 
-        // Search By State And Price Range
-        else if(searchCity === "Search By City" && searchState !== "Search By State" && searchPrice.min !== null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        // Search By Zip Code And Price Range
+        else if(searchCity === "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min !== null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         }    
-        else if(searchCity === "Search By City" && searchState !== "Search By State" && searchPrice.min !== null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
+        else if(searchCity === "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min !== null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
         }  
-        else if(searchCity === "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        else if(searchCity === "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min === null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         } 
-        // Search By City, State And Price Range
-        else if(searchCity !== "Search By City" && searchState !== "Search By State" && searchPrice.min !== null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        // Search By City, Zip Code And Price Range
+        else if(searchCity !== "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min !== null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         }    
-        else if(searchCity !== "Search By City" && searchState !== "Search By State" && searchPrice.min !== null && searchPrice.max === null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
+        else if(searchCity !== "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min !== null && searchPrice.max === null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) >= searchPrice.min))
         }  
-        else if(searchCity !== "Search By City" && searchState !== "Search By State" && searchPrice.min === null && searchPrice.max !== null){
-            setFilteredProperties(data.idx.nodes.filter(property => property.cities === searchCity && property.states === searchState && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
+        else if(searchCity !== "Search By City" && searchZip !== "Search By Zip Code" && searchPrice.min === null && searchPrice.max !== null){
+            setFilteredProperties(data.idx.nodes.filter(property => property.city === searchCity && property.zipCode === searchZip && parseInt(property.price.replace('$','').replaceAll(',','')) <= searchPrice.max))
         } 
 
-    }, [ searchCity, searchState, searchPrice, data.idx.nodes ])
+    }, [ searchCity, searchZip, searchPrice, data.idx.nodes ])
 
     const [ pages, setPages ] = React.useState(null)
     const [ properties, setProperties ] = React.useState(filteredProperties.slice(paginateMin, paginateMax))
@@ -99,7 +100,7 @@ const PropertiesIndex = ({ data }) => {
 
     React.useEffect(() => {
         setProperties(filteredProperties.slice(paginateMin, paginateMax))
-    }, [ filteredProperties, page, paginateMin, paginateMax, searchCity, searchState, searchPrice ])
+    }, [ filteredProperties, page, paginateMin, paginateMax, searchCity, searchZip, searchPrice ])
 
     React.useEffect(() => {
         if(searchPrice.min?.length === 0){
@@ -112,7 +113,7 @@ const PropertiesIndex = ({ data }) => {
 
     const clearSearch = () => {
         setSearchCity("Search By City")
-        setSearchState("Search By State")
+        setSearchZip("Search By Zip Code")
         setSearchPrice({min: null, max: null})
     }
 
@@ -121,26 +122,27 @@ const PropertiesIndex = ({ data }) => {
     }, [ pages ])
 
     React.useEffect(() => {
-        if(searchCity === "Search By City" && searchState === "Search By State" && searchPrice.min === null && searchPrice.max === null){
-            null
+        if(searchCity === "Search By City" && searchZip === "Search By Zip Code" && searchPrice.min === null && searchPrice.max === null){
+            return null
         }
         else {
-            scrollTo('pageHeader')
+            scrollTo('pageHeader', 100)
         } 
-    }, [ page ])
+    }, [ searchCity, searchZip, searchPrice.min, searchPrice.max, page ])
 
     return(
         <>
+            <Seo pageTitle="Properties" />
             <PageHeader 
                 title={data.file.childMarkdownRemark.frontmatter.title} 
                 image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} 
             />
-            <div className="flex flex-row items-center justify-center pt-16">
-                <span className="text-3xl font-bold mb-1 mr-2">Search Properties</span>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center p-4 lg:pt-16">
+                <span className="text-3xl font-bold my-2 lg:mt-0 lg:mb-1 lg:mr-2">Search Properties</span>
                 <select
                     name="Search By City"
                     aria-label="Search By City"
-                    className="formInput mx-4 cursor-pointer"
+                    className="formInput my-1 lg:my-0 lg:mx-4 cursor-pointer"
                     value={searchCity}
                     onChange={(e) => setSearchCity(e.target.value)}
                     id="search-cities"
@@ -153,17 +155,17 @@ const PropertiesIndex = ({ data }) => {
                     })}
                 </select>
                 <select
-                    name="Search By State"
-                    aria-label="Search By State"
-                    className="formInput mx-4 cursor-pointer"
-                    value={searchState}
-                    onChange={(e) => setSearchState(e.target.value)}
-                    id="search-states"
+                    name="Search By Zip Code"
+                    aria-label="Search By Zip Code"
+                    className="formInput my-1 lg:my-0 lg:mx-4 cursor-pointer"
+                    value={searchZip}
+                    onChange={(e) => setSearchZip(e.target.value)}
+                    id="search-zipcodes"
                 >
-                    <option value="Search By State" disabled>Search By State</option>
-                    {states?.map((state, i) => {
+                    <option value="Search By Zip Code" disabled>Search By Zip Code</option>
+                    {zipCodes?.map((zipCode, i) => {
                         return(
-                            <option key={i} value={state}>{state}</option>
+                            <option key={i} value={zipCode}>{zipCode}</option>
                         )
                     })}
                 </select>
@@ -173,7 +175,7 @@ const PropertiesIndex = ({ data }) => {
                     min="0"
                     value={searchPrice.min} 
                     onChange={(e) => setSearchPrice({min: e.target.value, max: searchPrice.max})}
-                    className="formInput mx-4"
+                    className="formInput my-1 lg:my-0 lg:mx-4"
                 />
                 <input 
                     type="number" 
@@ -181,25 +183,25 @@ const PropertiesIndex = ({ data }) => {
                     min={searchPrice.min}
                     value={searchPrice.max} 
                     onChange={(e) => setSearchPrice({min: searchPrice.min, max: e.target.value})}
-                    className="formInput mx-4"
+                    className="formInput my-1 lg:my-0 lg:mx-4"
                 />
                 <button 
                     onClick={() => clearSearch()} 
-                    className="bg-primary text-secondary filter hover:brightness-90 flex flex-row items-center py-2 px-5 text-sm text-textLight rounded-md max-w-fit transition-colors ml-4"
+                    className="bg-primary text-secondary filter hover:brightness-90 flex flex-row items-center py-2 px-5 text-sm text-textLight rounded-md max-w-fit transition-colors my-4 lg:my-0 lg:ml-4"
                 >
                     Clear Search Filters
                 </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 p-4 lg:p-8">
                 {properties?.map((property, i) => {
                     return(
                         <PropertyCard
                             _key={property.id}
                             index={i}
                             title={property.title}
-                            city={property.cities}
-                            state={property.states}
-                            zipCode={property.zip_codes}
+                            city={property.city}
+                            state={property.state}
+                            zipCode={property.zipCode}
                             price={property.price}
                             slug={property.slug}
                             details={property.details}
@@ -247,9 +249,9 @@ export const PageQuery = graphql`
           id
           title
           slug
-          cities
-          states
-          zip_codes
+          city
+          state
+          zipCode
           price
           details {
             bedrooms

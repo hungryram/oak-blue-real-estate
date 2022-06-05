@@ -2,7 +2,15 @@ require('dotenv').config()
 const fetch = require('node-fetch');
 const slugify = require('slugify');
 const { createFilePath, createRemoteFileNode } = require("gatsby-source-filesystem");
+const typeDefs = require('./src/graphql/typeDefs');
 
+ // Define Schema Types
+
+ exports.createSchemaCustomization = ({ actions }) => {
+    const { createTypes } = actions
+    createTypes(typeDefs)
+  }
+  
 // Create IDX Listing Source Nodes
 
 exports.sourceNodes = async ({ actions, createContentDigest }) => {
@@ -13,36 +21,19 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
 
     const authCredential = 'Basic ' + new Buffer.from(process.env.IHOMEFINDERUSERNAME + ':' + process.env.IHOMEFINDERPASSWORD).toString('base64')
     const requestOptions = {
-    'method': 'GET',
-    'headers': {
-        'Accept': 'application/json',
-        'Authorization': authCredential,
-    }
+        'method': 'GET',
+        'headers': {
+            'Accept': 'application/json',
+            'Authorization': authCredential,
+        }
     };
 
-    // Fetch Listings Data
-
-    const listingsEndpoint = process.env.IHOMEFINDERENDPOINT
-
-    const fetchListings = async () => {
-        const listingsResponse = await fetch(listingsEndpoint, requestOptions)
-        const listings = await listingsResponse.json();
-        const listingsData = Object.values(listings.results);
-        return listingsData
-    }
-
-    const listingEndpoints = await fetchListings().then((result) => {
-        let listingEndpoints = [];
-        result.forEach((link) => {
-            listingEndpoints.push(link.links.filter(link => link.rel === 'self').map(e => e.href).toString())
-        })
-        return listingEndpoints;
-    })
+    // Fetch Listing Data
 
     const fetchData = async (endpoint) => {
-        const response = await fetch(endpoint, requestOptions)
-        const data = await response.json()
-        return data;
+        const res = await fetch(endpoint, requestOptions)
+        const data = await res.json();
+        return data.results
     }
 
     const formatPrice = new Intl.NumberFormat('en-US', {
@@ -51,52 +42,48 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
         maximumFractionDigits: 0
     });
 
-    let listings = [];
-  
-    await Promise.all(listingEndpoints.map(async (endpoint) => {
-        const data = await fetchData(endpoint)
-        const photosEndpoint = data.photos.links.filter(link => link.rel === 'self').map(e => e.href).toString()
-        const photoArray = await fetchData(photosEndpoint)
-        const photoData = await Promise.all(photoArray.results.map(async (result) => {
-            const photoEndpoint = result.links.filter(link => link.rel === 'self').map(e => e.href).toString()
-            const data = await fetchData(photoEndpoint)
-            const photoObj = { _id: data.id, image: data.largeImageUrl, order: data.displayOrder }
-            return photoObj
-        }))
-        const photos = photoData.map(photo => (photo))
-        const slug = slugify(`${data.address.houseNumber}-${data.address.streetName}`, { lower: true })
-        const status = data.status.charAt(0).toUpperCase() + data.status.slice(1)
-        const price = formatPrice.format(data.listPrice)
-        const listing = {
-            _id: data.id,
+    
+    const listingData = await fetchData(`${process.env.IHOMEFINDERENDPOINT}?fields=id,listingAgent,listingStatus,listPrice,status,description,squareFeet,bedrooms,fullBathrooms,partialBathrooms,address,latitude,longitude,photos`)
+    
+    // Create Listing Objects
+
+    const listings = await Promise.all(listingData.map(async (listing) => {
+        const photosEndpoint = listing.photos.links.filter(link => link.rel === 'self').map(e => e.href).toString()+`?fields=largeImageUrl,displayOrder`
+        const photoData = await fetchData(photosEndpoint)
+        const featuredImage = photoData.filter(photo => photo.displayOrder === 0)[0]
+        const photos = photoData.map(url => ( url.largeImageUrl ))
+        const slug = slugify(`${listing.address.houseNumber}-${listing.address.streetName}`, { lower: true })
+        const status = listing.status.charAt(0).toUpperCase() + listing.status.slice(1)
+        const price = formatPrice.format(listing.listPrice)
+        const listingObject = {
+            _id: listing.id,
             _type: 'IDX',
-            title: `${data.address.houseNumber} ${data.address.streetName}`,
+            title: `${listing.address.houseNumber} ${listing.address.streetName}`,
             slug: slug,
-            cities: data.address.city,
-            states: data.address.state,
-            zip_codes: data.address.postalCode,
-            listing_agent: data.listingAgent,
+            city: listing.address.city,
+            state: listing.address.state,
+            zipCode: listing.address.postalCode,
+            listing_agent: listing.listingAgent,
             status: status,
             price: price,
             details: {
-                description: data.description,
-                squareFeet: data.squareFeet,
-                bedrooms: data.bedrooms,
-                fullBathrooms: data.fullBathrooms,
-                partialBathrooms: data.partialBathrooms,
-                latitude: data.latitude,
-                longitude: data.longitude,
+                description: listing.description,
+                squareFeet: listing.squareFeet,
+                bedrooms: listing.bedrooms,
+                fullBathrooms: listing.fullBathrooms,
+                partialBathrooms: listing.partialBathrooms,
+                latitude: listing.latitude,
+                longitude: listing.longitude,
             },
             photos: {
+                featuredImage: featuredImage.largeImageUrl,
                 gallery: photos,
             },
         }
-        listings.push(listing)
+        return listingObject
     }))
 
     // Create IDX Listing Source Nodes
-
-    
 
     if(listings.length > 0) {
 
@@ -105,6 +92,7 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
               ...listing,
               id: listing._id,
               slug: listing.slug,
+              zipCode: listing.zipCode,
               parent: null,
               children: [],
               internal: {
@@ -122,12 +110,32 @@ exports.onCreateNode = async ({ node, getNode, createNodeId, actions, store, cac
     const { createNode, createNodeField  } = actions;
 
     if(node.internal.type === 'Idx'){
-
+        if(node.photos.featuredImage){
+            const imageNode = await createRemoteFileNode({
+                url: node.photos.featuredImage,
+                parentNodeId: node.id,
+                store,
+                cache,
+                getCache,
+                createNode,
+                createNodeId,
+            })
+            .catch(err => {
+                console.log(`Error fetching image file from source: ${node.photos.featured} for listing: ${node.title}. The image file likely no longer exists at the source URL.`)
+            })
+            if(imageNode){
+                createNodeField({
+                        node,
+                        name: 'featuredImage___NODE',
+                        value: imageNode.id,
+                    })
+            }
+        }
         if(node.photos.gallery){
-            let imageNodes = []
+            let photos = []
             await Promise.all(node.photos.gallery.map(async (image) => {
                 const imageNode = await createRemoteFileNode({
-                    url: image.image,
+                    url: image,
                     parentNodeId: node.id,
                     store,
                     cache,
@@ -136,29 +144,18 @@ exports.onCreateNode = async ({ node, getNode, createNodeId, actions, store, cac
                     createNodeId,
                 })
                 .catch(err => {
-                    console.log(`Error fetching image file from source: ${image.image} for listing: ${node.title}. The image file likely no longer exists at the source URL.`)
+                    console.log(`Error fetching image file from source: ${image} for listing: ${node.title}. The image file likely no longer exists at the source URL.`)
                 })
                 if(imageNode){
-                    imageNodes.push(imageNode)
+                    photos.push(imageNode)
                 }
             }))
-            if(imageNodes){
-              const filterNodes = imageNodes.filter(imageNode => imageNode.id);
-              const orderNodes = filterNodes.sort((a, b) => {
-                  let dateA = new Date(a.birthtime)
-                  let dateB = new Date(b.birthtime)
-                return dateA - dateB;
-              });
-              createNodeField({
-                  node,
-                  name: 'photos___NODE',
-                  value: orderNodes.map(imageNode => imageNode.id),
-              })
-              createNodeField({
-                  node,
-                  name: 'featuredImage___NODE',
-                  value: orderNodes[0].id,
-              })
+            if(photos.length > 0){
+                createNodeField({
+                    node,
+                    name: 'photos___NODE',
+                    value: photos.map(photo => photo.id)
+                })
             }
         }
     }
@@ -166,24 +163,16 @@ exports.onCreateNode = async ({ node, getNode, createNodeId, actions, store, cac
     if(node.internal.type === 'File' && node.sourceInstanceName === 'communities' && node.name !== 'index'){
         const slug = createFilePath({ node, getNode, basePath: `pages`})
         const markdownNode = await getNode(node.children[0])
-        const content = {
-            name: markdownNode.frontmatter.name,
-            city: markdownNode.frontmatter.city,
-            description: markdownNode.frontmatter.description,
-            features: markdownNode.frontmatter.features,
-            featured: markdownNode.frontmatter.featured,
-            image: markdownNode.frontmatter.image,
-        }
         createNode({
-            ...content,
+            ...markdownNode,
             id: `community-${node.id}`,
             slug: slug,
             parent: node.id,
-            children: [],
+            children: [`${markdownNode.id}`],
             internal: {
                 type: 'Community',
-                content: JSON.stringify(content),
-                contentDigest: createContentDigest(content)
+                content: JSON.stringify(markdownNode),
+                contentDigest: createContentDigest(markdownNode)
             }
         })
     }
@@ -191,22 +180,33 @@ exports.onCreateNode = async ({ node, getNode, createNodeId, actions, store, cac
     if(node.internal.type === 'File' && node.sourceInstanceName === 'blog' && node.name !== 'index'){
         const slug = createFilePath({ node, getNode, basePath: `pages`})
         const markdownNode = await getNode(node.children[0])
-        const content = {
-            title: markdownNode.frontmatter.title,
-            excerpt: markdownNode.frontmatter.excerpt,
-            date: markdownNode.frontmatter.date,
-            featuredImage: markdownNode.frontmatter.featuredImage,
-        }
         createNode({
-            ...content,
+            ...markdownNode,
             id: `blog-${node.id}`,
             slug: slug,
             parent: node.id,
-            children: [],
+            children: [`${markdownNode.id}`],
             internal: {
                 type: 'Blog',
-                content: JSON.stringify(content),
-                contentDigest: createContentDigest(content)
+                content: JSON.stringify(markdownNode),
+                contentDigest: createContentDigest(markdownNode)
+            }
+        })
+    }
+
+    if(node.internal.type === 'File' && node.sourceInstanceName === 'team' && node.name !== 'index'){
+        const slug = createFilePath({ node, getNode, basePath: `pages`})
+        const markdownNode = await getNode(node.children[0])
+        createNode({
+            ...markdownNode,
+            id: `team-${node.id}`,
+            slug: slug,
+            parent: node.id,
+            children: [`${markdownNode.id}`],
+            internal: {
+                type: 'Team',
+                content: JSON.stringify(markdownNode),
+                contentDigest: createContentDigest(markdownNode)
             }
         })
     }

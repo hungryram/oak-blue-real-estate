@@ -2,27 +2,23 @@
   "_type" : "footer",
   "about_us": [
     {
-      "name": "How It Works",
-      "link": "/how-it-works"
+      "name": "About Oak Blue",
+      "link": "/about"
     },
     {
       "name": "Meet Our Team",
-      "link": "/meet-our-team"
+      "link": "/team"
     },
     {
-      "name": "Help Desk",
-      "link": "/help-desk"
+      "name": "Where We Build",
+      "link": "/communities"
     },
     {
-      "name": "Plans & Pricing",
-      "link": "/plans-and-pricing"
+      "name": "Contact Us",
+      "link": "/contact"
     }
   ],
   "quick_links": [
-    {
-      "name": "Home",
-      "link": "/"
-    },
     {
       "name": "Properties",
       "link": "/properties"
@@ -32,8 +28,12 @@
       "link": "/blog"
     },
     {
-      "name": "Contact Us",
-      "link": "/contact"
+      "name": "Buyers",
+      "link": "/"
+    },
+    {
+      "name": "Sellers",
+      "link": "/"
     }
   ],
   "footerIcons": [

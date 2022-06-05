@@ -20,9 +20,9 @@ const About = ({ _key, heading, subHeading, caption, list, images, buttonText, b
     }
 
     return(
-        <div key={_key} className="py-20 w-full bg-background">
-            <div key={_key} className="flex flex-row max-w-screen-2xl mx-auto">
-                <div className="flex flex-col w-1/2 ml-auto mr-20 my-auto">
+        <div key={_key} className="px-4 py-10 lg:py-20 lg:px-10 w-full bg-background">
+            <div key={_key} className="flex flex-col lg:flex-row max-w-screen-2xl mx-auto">
+                <div className="flex flex-col lg:w-1/2 lg:ml-auto lg:mr-20 my-auto">
                     <div className="max-w-fit">
                         <h2 className="uppercase text-xl text-primary font-semibold">{heading}</h2>
                         <h1 className="text-3xl font-bold pb-2 border-b border-primary">{subHeading}</h1>
@@ -44,7 +44,7 @@ const About = ({ _key, heading, subHeading, caption, list, images, buttonText, b
                         className="mt-12 mb-auto"
                     />
                 </div>
-                <div className={`w-1/2 grid ${galleryCols}`}>
+                <div className={`hidden w-1/2 lg:grid ${galleryCols}`}>
                     {images.map((image, i) => {
                         return(
                             <GatsbyImage 

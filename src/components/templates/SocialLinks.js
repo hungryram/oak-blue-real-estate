@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaPinterestP, FaLinkedinIn, FaTikt
 
 const Facebook = ({ username }) => {
     return(
-        <a href={`https://www.facebook.com/${username}`} className="socialLink">
+        <a href={`https://www.facebook.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaFacebookF/>
         </a>
     )
@@ -11,7 +11,7 @@ const Facebook = ({ username }) => {
 
 const Instagram = ({ username }) => {
     return(
-        <a href={`https://www.instagram.com/${username}`} className="socialLink">
+        <a href={`https://www.instagram.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaInstagram/>
         </a>
     )
@@ -19,7 +19,7 @@ const Instagram = ({ username }) => {
 
 const Twitter = ({ username }) => {
     return(
-        <a href={`https://www.twitter.com/${username}`} className="socialLink">
+        <a href={`https://www.twitter.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaTwitter/>
         </a>
     )
@@ -27,7 +27,7 @@ const Twitter = ({ username }) => {
 
 const Pinterest = ({ username }) => {
     return(
-        <a href={`https://www.pinterest.com/${username}`} className="socialLink">
+        <a href={`https://www.pinterest.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaPinterestP/>
         </a>
     )
@@ -35,7 +35,7 @@ const Pinterest = ({ username }) => {
 
 const LinkedIn = ({ username }) => {
     return(
-        <a href={`https://www.linkedin.com/${username}`} className="socialLink">
+        <a href={`https://www.linkedin.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaLinkedinIn/>
         </a>
     )
@@ -43,7 +43,7 @@ const LinkedIn = ({ username }) => {
 
 const YouTube = ({ username }) => {
     return(
-        <a href={`https://www.youtube.com/${username}`} className="socialLink">
+        <a href={`https://www.youtube.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaYoutube/>
         </a>
     )
@@ -51,7 +51,7 @@ const YouTube = ({ username }) => {
 
 const TikTok = ({ username }) => {
     return(
-        <a href={`https://www.tiktok.com/${username}`} className="socialLink">
+        <a href={`https://www.tiktok.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaTiktok/>
         </a>
     )
@@ -59,7 +59,7 @@ const TikTok = ({ username }) => {
 
 const Yelp = ({ username }) => {
     return(
-        <a href={`https://www.yelp.com/${username}`} className="socialLink">
+        <a href={`https://www.yelp.com/${username}`} target="_blank" rel="noreferrer" className="socialLink">
             <FaYelp/>
         </a>
     )

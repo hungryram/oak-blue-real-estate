@@ -5,6 +5,7 @@ import menu from '../../data/menu.json'
 import profile from '../../data/profile.json'
 import { BiCaretDown } from 'react-icons/bi'
 import { BsTelephone } from 'react-icons/bs'
+import SocialLinks from "../templates/SocialLinks"
 
 const Navbar = () => {
 
@@ -23,6 +24,7 @@ const Navbar = () => {
     `)
 
     const [ subMenu, setSubMenu ] = React.useState(null)
+    const [ menuOpen, setMenuOpen ] = React.useState(false)
 
     return (
         <nav className="relative w-full h-24 bg-background z-50">
@@ -37,7 +39,7 @@ const Navbar = () => {
                     alt={`${profile.company_name} logo`}
                 />
             </Link>
-            <ul className="navMenu">
+            <ul className={`navMenu ${menuOpen ? 'navMenuOpen' : 'navMenuClosed'}`}>
                 {menu.menuLinks.map((menuItem, i) => {
                     if(menuItem.subMenu){
                         return(
@@ -54,7 +56,12 @@ const Navbar = () => {
                                         <div className="subMenu">
                                             {menuItem.subMenu.map((menuItem, i) => {
                                                 return(
-                                                    <Link to={menuItem.link} className="subMenuItem" key={i}>
+                                                    <Link 
+                                                        to={menuItem.link} 
+                                                        className="subMenuItem" 
+                                                        key={i}
+                                                        onClick={menuOpen ? () => setMenuOpen(false) : null}
+                                                    >
                                                         {menuItem.name}
                                                     </Link>
                                                 )
@@ -68,25 +75,51 @@ const Navbar = () => {
                         return(
                             <Link 
                                 to={menuItem.link}
-                                className="cursor-pointer"
+                                className="menuItem text-lg"
                                 key={i}
+                                onClick={menuOpen ? () => setMenuOpen(false) : null}
                             >
                                 {menuItem.name}
                             </Link>
                         )
                     }
                 })}
+                <SocialLinks 
+                    links={profile.social_media}
+                    className='absolute bottom-0 left-1/2 -translate-x-1/2 text-3xl flex lg:hidden flex-row mb-8'
+                />
             </ul>
-            <div className="navContact">
-                <BsTelephone className="text-4xl text-primary" />
-                <a 
-                    className="flex flex-col ml-4"
-                    href={`tel:+${profile.contact_information.phone}`}
+            <button
+                aria-label="Navigation Menu Button"
+                onClick={() => setMenuOpen(menuOpen === true ? false : true)}
+                className={`block lg:hidden absolute right-2 top-1/2 -translate-y-1/2 flex flex-row items-center ml-auto cursor-pointer ${menuOpen === true? 'mr-2' : 'mr-4'}`}
                 >
-                    <span className="uppercase font-semibold">Call Us</span>
-                    <span className="font-bold text-xl">{profile.contact_information.phone}</span>
-                </a>
-            </div>
+                <div className="relative flex flex-col h-12 w-12">
+                <div
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 h-1 rounded-lg shadow-md transform transition duration-150 ease-in-out bg-primary ${
+                    menuOpen === true
+                        ? "-translate-y-1/2 rotate-45 w-8"
+                        : "-translate-y-3 w-10 md:w-12"
+                    }`}
+                />
+                <div
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1 rounded-lg shadow-md transform transition duration-75 ease-in-out ${
+                    menuOpen === true ? "scale-0" : "bg-primary w-10 md:w-12"
+                    }`}
+                />
+                <div
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 h-1 rounded-lg shadow-md transform transition duration-150 ease-in-out bg-primary ${
+                    menuOpen === true
+                        ? "-translate-y-1/2 -rotate-45 w-8"
+                        : "translate-y-2 w-10 md:w-12"
+                    }`}
+                />
+                </div>
+            </button>
+            <Link to="/contact" className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 flex-row items-center bg-primary hover:brightness-90 transition-colors rounded-md shadow-md py-3 px-5 text-textLight">
+                <BsTelephone className="text-2xl" />
+                <span className="text-xl ml-3 text-secondary">Contact Us</span>
+            </Link>
         </nav>
     )
 }

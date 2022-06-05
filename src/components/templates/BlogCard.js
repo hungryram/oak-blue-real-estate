@@ -7,7 +7,7 @@ const BlogCard = ({ _key, image, title, excerpt, date, slug }) => {
     const day = d.getDate()
     const month = d.toLocaleString('default', { month: 'short' })
     return(
-        <Link key={_key} to={`/blog${slug}`} className="flex flex-col md:m-4 2xl:m-8 border-b border-textDark/10 hover:shadow-md transition-all">
+        <Link key={_key} to={`/blog${slug}`} className="flex flex-col my-4 md:m-4 2xl:m-8 border-b border-textDark/10 hover:shadow-md transition-all">
             <div className="relative h-80 w-full">
                 <div className="absolute top-1/4 -translate-y-1/4 left-0 shadow-md bg-primary z-20 flex flex-col p-2 items-center text-textLight">
                     <span className="leading-none">{day}</span>

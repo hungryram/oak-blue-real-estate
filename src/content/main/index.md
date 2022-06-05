@@ -1,13 +1,13 @@
 ---
 sections:
 - type: hero
-  heading: OAK BLUE Real Estate
+  heading: Oak Blue Real Estate
   buttonText: View Properties
   buttonLink: /properties
   backgroundImage: ../../images/heroImage.png
 - type: about
   heading: Who We Are
-  subHeading: About Our Real Estate
+  subHeading: About Oak Blue
   caption: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
   list:
     - listItem: High quality products
@@ -17,7 +17,7 @@ sections:
     - listItem: Green and clean environment
     - listItem: Humanitarian community
   images:
-    - image: ../../images/aboutImage1.png
+    - image: ../../images/aboutImage.png
       altText: Description of Image 1
     - image: ../../images/aboutImage2.png
       altText: Description of Image 2

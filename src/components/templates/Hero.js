@@ -5,9 +5,9 @@ const Hero = ({ _key, backgroundImage, heading, buttonText, buttonLink }) => {
     return(
 
         <div key={_key} className="heroWrapper">
-            <GatsbyImage image={backgroundImage.childImageSharp.gatsbyImageData} className="w-full" loading="eager" alt="Hero Image"/>
+            <GatsbyImage image={backgroundImage.childImageSharp.gatsbyImageData} className="h-96 lg:h-auto w-full" loading="eager" alt="Hero Image"/>
             <div className="heroContent">
-                <h1 className="text-textLight text-5xl font-semibold">
+                <h1 className="text-textLight text-3xl lg:text-5xl font-semibold">
                     {heading}
                 </h1>
                 <Button 

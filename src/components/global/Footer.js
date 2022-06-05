@@ -38,14 +38,14 @@ const Footer = () => {
 
     return(
         <footer>
-            <div className="relative w-full max-h--fit overflow-hidden">
+            <div className="relative w-full max-h-fit overflow-hidden">
             <div className="relative w-full bg-black/90 py-8 z-20">
-                <div className="flex flex-row max-w-screen-2xl mx-auto py-12 px-4 text-secondary">
-                    <div className="flex flex-col items-center w-1/4 my-auto">
+                <div className="flex flex-col lg:flex-row max-w-screen-2xl mx-auto lg:py-12 px-4 text-secondary">
+                    <div className="flex flex-col items-center lg:w-1/4 my-auto p-4">
                         <GatsbyImage 
                             image={query.appearance.branding.logoLight.childImageSharp.gatsbyImageData} 
                             alt={`${profile.company_name} logo`} 
-                            className="w-44"
+                            className="lg:w-44"
                         />
                         <SocialLinks links={profile.social_media} className="my-8 grid grid-cols-4 gap-4" />
                     </div>
@@ -57,7 +57,7 @@ const Footer = () => {
                             })}
                         </ul>
                     </div>
-                    <div className="flex flex-col mx-auto text-textLight">
+                    <div className="flex flex-col mx-auto my-8 lg:my-0 -translate-x-2 lg:translate-x-0 text-textLight">
                         <h2 className="text-2xl tracking-tight font-bold">Quick Links</h2>
                         <ul className="my-auto">
                             {footer.quick_links?.map((link, i) => {
@@ -65,8 +65,8 @@ const Footer = () => {
                             })}
                         </ul>
                     </div>
-                    <div className="flex flex-col mx-auto text-textLight">
-                        <h2 className="text-2xl tracking-tight font-bold">Contact</h2>
+                    <div className="flex flex-col mx-auto text-textLight items-center lg:items-start">
+                        <h2 className="text-2xl tracking-tight font-bold -translate-x-8 lg:translate-x-0">Contact</h2>
                         <div className="my-auto">
                             <div className="flex flex-row items-center my-4" >
                                 <a href={`tel:+${profile.contact_information.phone}`} className="rounded-full p-3 bg-accent hover:bg-textLight text-textLight hover:text-accent mr-3  transition-colors">
@@ -116,11 +116,11 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-row items-center max-w-screen-2xl mx-auto p-4">
-                <span className="mx-auto text-secondary">Copyright © Oak Blue Real Estate Ltd. 2022</span>
+                <span className="mx-auto text-secondary text-sm lg:text-base">Copyright © Oak Blue Real Estate Ltd. 2022</span>
                 <div className="flex flex-row items-center ml-auto">
                     {query.footer.footerIcons.map((iconData, i) => {
                         return (
-                            <div key={i} className="m-2 w-20 h-20">
+                            <div key={i} className="m-2">
                                 <GatsbyImage className="m-2 w-full" image={iconData?.icon?.childImageSharp?.gatsbyImageData} alt={`${profile.company_name} footer icon ${i - 1}`} />
                             </div>
                         )

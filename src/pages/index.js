@@ -7,10 +7,13 @@ import Showcase from "../components/templates/Showcase"
 import Awards from '../components/templates/Awards'
 import FeaturedCommunities from "../components/templates/FeaturedCommunities"
 import Testimonials from "../components/templates/Testimonials"
+import Seo from '../components/global/Seo'
+
 
 const Index = ({ data }) => {
   return (
     <>
+      <Seo pageTitle="Home" />
       {data.file.childMarkdownRemark.frontmatter.sections.map((section, i) => {
         if(section.type === 'hero'){
           return(
@@ -109,20 +112,20 @@ export const IndexQuery = graphql`
             buttonLink
             backgroundImage {
               childImageSharp {
-                gatsbyImageData
+                gatsbyImageData(placeholder: NONE, quality: 100)
               }
             }
             images {
               altText
               image {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(placeholder: NONE, quality: 100)
                 }
               }
             }
             image {
               childImageSharp {
-                gatsbyImageData
+                gatsbyImageData(placeholder: NONE, quality: 100)
               }
             }
             imagePosition
@@ -142,7 +145,7 @@ export const IndexQuery = graphql`
               testimonial
               image {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(placeholder: NONE, quality: 100)
                 }
               }
             }

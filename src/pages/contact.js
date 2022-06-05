@@ -2,44 +2,113 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import profile from '../data/profile.json'
 import PageHeader from '../components/templates/PageHeader'
-import Button from '../components/ui/Button'
 import { FaMapMarkerAlt, FaPaperPlane, FaPhoneAlt } from 'react-icons/fa'
+import Seo from '../components/global/Seo'
 
 const Contact = ({ data }) => {
 
     const [ contact, setContact ] = React.useState({name: '', email: '', message: ''})
+    const [ disabled, setDisabled ] = React.useState(true)
+
+    React.useEffect(() => {
+        if(
+            contact.name.length !== 0 &&
+            contact.email.length !== 0
+        ){
+            setDisabled(false)
+        }
+        else{
+            setDisabled(true)
+        }
+    }, [
+      contact.name.length, 
+      contact.email.length, 
+    ])
+
+    const encode = (data) => {
+        return Object.keys(data)
+          .map(
+            (key) =>
+              encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+          )
+          .join("&");
+      }
+
+    const submitForm = (e) => {
+        const formData = {
+            name: contact.name,
+            email: contact.email,
+            message: contact.message,
+        }
+        e.preventDefault();
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({
+            "form-name": e.target.getAttribute("name"),
+            ...formData
+          }),
+        })
+        .then(
+            setContact({name: '', email: '', message: ''}),
+        )
+        .catch((error) => console.log(error))   
+      };
     return(
         <>
+            <Seo pageTitle="Contact" />
             <PageHeader image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} title={data.file.childMarkdownRemark.frontmatter.title} />
-            <div className="flex flex-row mx-auto max-w-screen-2xl py-8">
-                <div className="w-1/2 mx-auto p-4">
-                    <h1 className="text-4xl font-bold">Get In Touch</h1>
+            <div className="flex flex-col lg:flex-row mx-auto max-w-screen-2xl lg:py-8">
+                <form 
+                    className="lg:w-1/2 mx-auto p-4"
+                    name="Contact Form"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field" 
+                    method="POST"
+                    onSubmit={(e) => submitForm(e)}
+                >
+                    <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
+                    <input type="hidden" name="bot-field" />
+                    <label htmlFor="contactName" className="mt-4 text-secondary font-bold">
+                        Your Name
+                    </label>
                     <input type="text" 
+                        id="contactName"
                         placeholder="Enter Your Name" 
                         value={contact.name} 
                         onChange={(e) => setContact({name: e.target.value, email: contact.email, message: contact.message}) } 
-                        className="formInput my-4 w-full"
+                        className="formInput mb-4 w-full"
                     />
+                    <label htmlFor="contactEmail" className="mt-4 text-secondary font-bold">
+                        Your Email
+                    </label>
                     <input type="email" 
+                        id="contactEmail"
                         placeholder="Enter Your Email" 
                         value={contact.email} 
                         onChange={(e) => setContact({name: contact.name, email: e.target.value, message: contact.message}) } 
-                        className="formInput my-4 w-full"
+                        className="formInput mb-4 w-full"
                     />
+                    <label htmlFor="contactMessage" className="mt-4 text-secondary font-bold">
+                        Message
+                    </label>
                     <textarea 
+                        id="contactMessage"
                         placeholder="Enter Your Message" 
                         value={contact.message} 
                         rows="8"
                         onChange={(e) => setContact({name: contact.name, email: contact.email, message: e.target.value}) } 
-                        className="formInput my-4 w-full"
+                        className="formInput mb-4 w-full"
                     />
-                    <Button
-                        text="Submit"
-                        className=""
-                        onClick={() => setContact({name: '', email: '', message: ''})}
-                    />
-                </div>
-                <div className="w-1/3 mx-auto p-8 bg-primary rounded-sm text-textLight">
+                    <button
+                        type="submit"
+                        className="button"
+                        disabled={disabled ? true : false}
+                    >
+                        Submit
+                    </button>
+                </form>
+                <div className="lg:w-1/3 mx-auto p-6 lg:p-8 bg-primary rounded-sm text-textLight my-4">
                     <h1 className="text-3xl">Contact</h1>
                             <div className="flex flex-row items-center my-8" >
                                 <a href={`tel:+${profile.contact_information.phone}`} className="rounded-full p-3 bg-background hover:bg-accent hover:text-textLight text-primary mr-3 transition-colors">
