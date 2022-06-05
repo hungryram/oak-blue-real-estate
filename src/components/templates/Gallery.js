@@ -8,36 +8,30 @@ const Gallery = ({ photos, title }) => {
     const [ images ] = React.useState(photos.map((photo, i) => { return {photo: photo, display: i}}))
     const length = images.length
     const [ display, setDisplay ] = React.useState(0)
-    const [ thumbnails, setThumbnails ] = React.useState(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
     const [ lightbox, setLightbox ] = React.useState(false)
 
-    React.useEffect(() => {
-        if(display >= 0 && display < length - 4){
-            return () => {
-                setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
-            }    
-        } 
-        else if(display >= length - 5){
-            const dif = length - display
-            const arr1 = images.slice(display, length)
-            let arr2 = []
-            if(dif === 4){
-                arr2 = images.slice(0,1)
-            }
-            else if(dif === 3){
-                arr2 = images.slice(0,2)
-            }
-            else if(dif === 2){
-                arr2 = images.slice(0,3)
-            }
-            else if(dif === 1){
-                arr2 = images.slice(0,4)
-            }
-            return () => {
-                setThumbnails(arr1.concat(arr2))
-            }
+    let thumbnails = [];
+    if(display >= 0 && display < length - 4){
+        thumbnails = images.filter((photo => photo.display >= display && photo.display <= display + 4))
+    }  
+    else if(display >= length - 5){
+        const dif = length - display
+        const arr1 = images.slice(display, length)
+        let arr2 = []
+        if(dif === 4){
+            arr2 = images.slice(0,1)
         }
-    }, [ display, images, length ])
+        else if(dif === 3){
+            arr2 = images.slice(0,2)
+        }
+        else if(dif === 2){
+            arr2 = images.slice(0,3)
+        }
+        else if(dif === 1){
+            arr2 = images.slice(0,4)
+        }
+        thumbnails = (arr1.concat(arr2))
+    }
 
     const togglePhoto = (direction) => {
         if(direction === 'next'){
