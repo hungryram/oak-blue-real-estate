@@ -8,15 +8,11 @@ const Gallery = ({ photos, title }) => {
     const [ images ] = React.useState(photos.map((photo, i) => { return {photo: photo, display: i}}))
     const [ display, setDisplay ] = React.useState(0)
     const [ thumbnails, setThumbnails ] = React.useState(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
-    console.log(display)
-    console.log(thumbnails)
     const [ lightbox, setLightbox ] = React.useState(false)
 
     React.useEffect(() => {
         if(display >= 0 && display < images.length - 4){
-            return () => {
-                setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
-            }    
+            setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
         } 
         else if(display >= images.length - 5){
             const dif = images.length - display
@@ -34,11 +30,9 @@ const Gallery = ({ photos, title }) => {
             else if(dif === 1){
                 arr2 = images.slice(0,4)
             }
-            return () => {
-                setThumbnails(arr1.concat(arr2))
-            }
+            setThumbnails(arr1.concat(arr2))
         }
-    }, [ display, images, images.length ])
+    }, [ display, images.length, images ])
 
     const togglePhoto = (direction) => {
         if(direction === 'next'){
