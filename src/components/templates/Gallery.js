@@ -6,17 +6,18 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 const Gallery = ({ photos, title }) => {
 
     const [ images ] = React.useState(photos.map((photo, i) => { return {photo: photo, display: i}}))
+    const length = images.length
     const [ display, setDisplay ] = React.useState(0)
     const [ thumbnails, setThumbnails ] = React.useState(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
     const [ lightbox, setLightbox ] = React.useState(false)
 
     React.useEffect(() => {
-        if(display >= 0 && display < images.length - 4){
+        if(display >= 0 && display < length - 4){
             setThumbnails(images.filter((photo => photo.display >= display && photo.display <= display + 4)))
         } 
-        else if(display >= images.length - 5){
-            const dif = images.length - display
-            const arr1 = images.slice(display, images.length)
+        else if(display >= length - 5){
+            const dif = length - display
+            const arr1 = images.slice(display, length)
             let arr2 = []
             if(dif === 4){
                 arr2 = images.slice(0,1)
@@ -30,9 +31,11 @@ const Gallery = ({ photos, title }) => {
             else if(dif === 1){
                 arr2 = images.slice(0,4)
             }
-            setThumbnails(arr1.concat(arr2))
+            return () => {
+                setThumbnails(arr1.concat(arr2))
+            }
         }
-    }, [ display ])
+    }, [ display, images, length ])
 
     const togglePhoto = (direction) => {
         if(direction === 'next'){

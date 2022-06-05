@@ -207,7 +207,7 @@ const ScheduleTour = ({ listing }) => {
                         <input 
                             id="schedule-tour-confirm-info" 
                             name="Request Tour"
-                            onChange={() => setConfirm(true)}
+                            onChange={confirm ? () => setConfirm(false) : () => setConfirm(true)}
                             value={confirm}
                             type="checkbox" 
                             className="cursor-pointer scale-125 mr-1" 
