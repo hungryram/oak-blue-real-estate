@@ -6,6 +6,7 @@ import profile from '../../data/profile.json'
 import { BiCaretDown } from 'react-icons/bi'
 import { BsTelephone } from 'react-icons/bs'
 import SocialLinks from "../templates/SocialLinks"
+import { useWindowHeight, useWindowWidth, disableScroll, enableScroll } from '../../hooks'
 
 const Navbar = () => {
 
@@ -26,6 +27,16 @@ const Navbar = () => {
     const [ subMenu, setSubMenu ] = React.useState(null)
     const [ menuOpen, setMenuOpen ] = React.useState(false)
 
+    if(menuOpen === true ){
+        disableScroll();
+      }
+      else{
+        enableScroll();
+      }
+
+    let windowHeight = useWindowHeight()
+    let windowWidth = useWindowWidth()
+
     return (
         <nav className="relative w-full h-24 bg-background z-50">
             <Link to="/" className="absolute top-0 left-2 lg:left-16 xl:left-32">
@@ -39,7 +50,7 @@ const Navbar = () => {
                     alt={`${profile.company_name} logo`}
                 />
             </Link>
-            <ul className={`navMenu ${menuOpen ? 'navMenuOpen' : 'navMenuClosed'}`}>
+            <ul className={`navMenu ${menuOpen ? 'navMenuOpen' : 'navMenuClosed'}`} style={windowWidth <= 1024 ? {height: windowHeight - 96} : null}>
                 {menu.menuLinks.map((menuItem, i) => {
                     if(menuItem.subMenu){
                         return(

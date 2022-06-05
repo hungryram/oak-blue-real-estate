@@ -39,8 +39,7 @@ h1,h2,h3,h4,h5{
 
 @media only screen and (max-width: 1024px) {
     .navMenu{
-        @apply fixed w-full top-24 bg-background transition-all flex flex-col items-center pt-8;
-        height: calc(100vh - 96px);
+        @apply fixed w-full bottom-0 bg-background transition-all flex flex-col items-center pt-8;
     }
 
     .menuItem{

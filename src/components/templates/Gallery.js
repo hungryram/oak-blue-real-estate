@@ -32,7 +32,7 @@ const Gallery = ({ photos, title }) => {
             }
             setThumbnails(arr1.concat(arr2))
         }
-    }, [ display, images.length, images ])
+    }, [ display ])
 
     const togglePhoto = (direction) => {
         if(direction === 'next'){

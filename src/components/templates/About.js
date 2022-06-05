@@ -27,7 +27,7 @@ const About = ({ _key, heading, subHeading, caption, list, images, buttonText, b
                         <h2 className="uppercase text-xl text-primary font-semibold">{heading}</h2>
                         <h1 className="text-3xl font-bold pb-2 border-b border-primary">{subHeading}</h1>
                     </div>
-                    <p className="my-8 font-medium">{caption}</p>
+                    <p className="my-8 font-medium text-secondary">{caption}</p>
                     <ul>
                     {list.map((item, i) => {
                         return(
