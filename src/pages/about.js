@@ -14,7 +14,7 @@ const About = ({ data }) => {
                 image={about.frontmatter.headerImage.childImageSharp.gatsbyImageData} 
                 title={about.frontmatter.title} 
             />
-            <div className="flex flex-col lg:flex-row items center max-w-screen-2xl mx-auto p-4 lg:p-8">
+            <div className="flex flex-col lg:flex-row items center max-w-screen-2xl mx-auto py-20 p-4">
             <div className="lg:w-2/5">
                 <GatsbyImage 
                     image={about.frontmatter.pageImage.childImageSharp.gatsbyImageData} 

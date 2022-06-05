@@ -58,9 +58,9 @@ const Contact = ({ data }) => {
         <>
             <Seo pageTitle="Contact" />
             <PageHeader image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} title={data.file.childMarkdownRemark.frontmatter.title} />
-            <div className="flex flex-col lg:flex-row mx-auto max-w-screen-2xl lg:py-8">
+            <div className="flex flex-col lg:flex-row lg:py-8">
                 <form 
-                    className="lg:w-1/2 mx-auto p-4"
+                    className="lg:w-1/2 w-full p-4"
                     name="Contact Form"
                     data-netlify="true"
                     data-netlify-honeypot="bot-field" 
@@ -69,32 +69,23 @@ const Contact = ({ data }) => {
                 >
                     <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
                     <input type="hidden" name="bot-field" />
-                    <label htmlFor="contactName" className="mt-4 text-secondary font-bold">
-                        Your Name
-                    </label>
                     <input type="text" 
                         id="contactName"
-                        placeholder="Enter Your Name" 
+                        placeholder="Name" 
                         value={contact.name} 
                         onChange={(e) => setContact({name: e.target.value, email: contact.email, message: contact.message}) } 
                         className="formInput mb-4 w-full"
                     />
-                    <label htmlFor="contactEmail" className="mt-4 text-secondary font-bold">
-                        Your Email
-                    </label>
                     <input type="email" 
                         id="contactEmail"
-                        placeholder="Enter Your Email" 
+                        placeholder="Email" 
                         value={contact.email} 
                         onChange={(e) => setContact({name: contact.name, email: e.target.value, message: contact.message}) } 
                         className="formInput mb-4 w-full"
                     />
-                    <label htmlFor="contactMessage" className="mt-4 text-secondary font-bold">
-                        Message
-                    </label>
                     <textarea 
                         id="contactMessage"
-                        placeholder="Enter Your Message" 
+                        placeholder="Message" 
                         value={contact.message} 
                         rows="8"
                         onChange={(e) => setContact({name: contact.name, email: contact.email, message: e.target.value}) } 

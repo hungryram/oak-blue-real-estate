@@ -23,9 +23,6 @@ sections:
       altText: Description of Image 2
   buttonText: Read More
   buttonLink: /about
-- type: videoTour
-  heading: Take a Video Tour of Our Modern Villa
-  video: homeTour.mp4
 - type: showcase
   heading: Buying a Home
   subHeading: Luxurious Interior Designs

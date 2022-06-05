@@ -86,7 +86,7 @@ const Navbar = () => {
                         return(
                             <Link 
                                 to={menuItem.link}
-                                className="menuItem text-lg"
+                                className="menuItem text-sm"
                                 key={i}
                                 onClick={menuOpen ? () => setMenuOpen(false) : null}
                             >

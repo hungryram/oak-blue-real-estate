@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +15,6 @@
         font-family: DMSans;
         src: url('../assets/fonts/DMSans-Regular.ttf')
     }
-
 }
 
 * {
@@ -22,15 +23,16 @@
 }
 
 html {
-    font-family: PlayfairDisplay;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .text-secondary {
-    font-family: DMSans;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1,h2,h3,h4,h5{
     @apply tracking-wide;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navLogo{
@@ -43,7 +45,7 @@ h1,h2,h3,h4,h5{
     }
 
     .menuItem{
-        @apply cursor-pointer hover:text-primary font-bold text-3xl my-4;
+        @apply cursor-pointer hover:text-primary font-bold text-xl my-4;
     }
 
     .navMenuClosed {
@@ -78,7 +80,7 @@ h1,h2,h3,h4,h5{
 }
 
 .subMenuItem{
-    @apply text-textDark hover:text-primary font-medium text-base;
+    @apply text-textDark hover:text-primary  text-base;
 }
 
 .heroWrapper{
@@ -136,7 +138,7 @@ h1,h2,h3,h4,h5{
 }
 
 .formInput {
-    @apply text-secondary text-lg border border-textDark/50 rounded-md px-2 py-1;
+    @apply text-secondary text-lg border border-textDark/20 px-2 py-1;
 }
 
 textarea { 

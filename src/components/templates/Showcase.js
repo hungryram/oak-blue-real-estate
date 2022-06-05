@@ -23,7 +23,7 @@ const Showcase = ({ _key, addPadding, heading, subHeading, caption, textBlocks, 
                             <p className="my-8 font-semibold text-primary">{caption}</p>
                             {textBlocks ?
                                 textBlocks.map((text, i) => {
-                                    return <p key={i} className="my-8 font-medium text-secondary">{text}</p>
+                                    return <p key={i} className="my-8  text-secondary">{text}</p>
                                 })
                             : null }
                             <Button 
@@ -45,7 +45,7 @@ const Showcase = ({ _key, addPadding, heading, subHeading, caption, textBlocks, 
                             <p className="my-8 font-semibold text-primary">{caption}</p>
                             {textBlocks ?
                                 textBlocks.map((text,i) => {
-                                    return <p key={i} className="my-8 font-medium text-secondary">{text}</p>
+                                    return <p key={i} className="my-8  text-secondary">{text}</p>
                                 })
                             : null }
                             <Button 
