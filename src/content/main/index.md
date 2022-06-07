@@ -4,7 +4,7 @@ sections:
   heading: Oak Blue Real Estate
   buttonText: View Properties
   buttonLink: /properties
-  backgroundImage: ../../images/heroImage.png
+  backgroundImage: ../../images/rich-interior2.jpg
 - type: about
   heading: Who We Are
   subHeading: About Oak Blue

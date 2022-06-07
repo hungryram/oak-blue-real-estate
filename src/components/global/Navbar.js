@@ -128,8 +128,8 @@ const Navbar = () => {
                 </div>
             </button>
             <Link to="/contact" className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 flex-row items-center bg-primary hover:brightness-90 transition-colors rounded-md shadow-md py-3 px-5 text-textLight">
-                <BsTelephone className="text-2xl" />
-                <span className="text-xl ml-3 text-secondary">Contact Us</span>
+                <BsTelephone className="text-sm" />
+                <span className="text-sm ml-3 text-secondary">Contact Us</span>
             </Link>
         </nav>
     )
