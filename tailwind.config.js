@@ -6,6 +6,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+    },
     colors: {
       "primary": colors.primary,
       "accent": colors.accent,
@@ -16,5 +19,17 @@ module.exports = {
       "white": "#FFFFFF"
     }
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          paddingLeft: '20px',
+          paddingRight: '20px',
+          '@screen xl': {
+            maxWidth: '1300px',
+          },
+        }
+      })
+    }
+  ],
 }

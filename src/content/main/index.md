@@ -15,11 +15,10 @@ sections:
     - listItem: Professional services
     - listItem: Absolute security
     - listItem: Green and clean environment
-    - listItem: Humanitarian community
   images:
-    - image: ../../images/aboutImage.png
+    - image: ../../images/bedroom.jpg
       altText: Description of Image 1
-    - image: ../../images/aboutImage2.png
+    - image: ../../images/showcaseImage1.png
       altText: Description of Image 2
   buttonText: Read More
   buttonLink: /about
@@ -32,7 +31,7 @@ sections:
     - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
   buttonText: Buyers Guide
   buttonLink: /
-  image: ../../images/showcaseImage1.png
+  image: ../../images/luxury-living-room.jpg
   imagePosition: left
   addPadding: top
 - type: showcase
@@ -44,7 +43,7 @@ sections:
     - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
   buttonText: Sellers Guide
   buttonLink: /
-  image: ../../images/showcaseImage2.png
+  image: ../../images/wooden-interior.jpg
   imagePosition: right
   addPadding: bottom
 - type: awards

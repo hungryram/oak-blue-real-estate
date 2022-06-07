@@ -138,7 +138,6 @@ const PropertiesIndex = ({ data }) => {
                 image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} 
             />
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center p-4 lg:pt-16">
-                <span className="text-3xl font-bold my-2 lg:mt-0 lg:mb-1 lg:mr-2">Search Properties</span>
                 <select
                     name="Search By City"
                     aria-label="Search By City"
@@ -189,7 +188,7 @@ const PropertiesIndex = ({ data }) => {
                     onClick={() => clearSearch()} 
                     className="bg-primary text-secondary filter hover:brightness-90 flex flex-row items-center py-2 px-5 text-sm text-textLight rounded-md max-w-fit transition-colors my-4 lg:my-0 lg:ml-4"
                 >
-                    Clear Search Filters
+                    Reset
                 </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 p-4 lg:p-8">
@@ -223,7 +222,7 @@ const PropertiesIndex = ({ data }) => {
                     return(
                         <button 
                             onClick={() => setPage(i)}
-                            className={`mx-1 text-3xl h-12 w-12 ${page === i ? 'bg-primary text-textLight font-bold' : ''} `}
+                            className={`mx-1 text-sm h-10 w-10 ${page === i ? 'bg-primary text-textLight font-bold' : ''} `}
                         >
                                 {i + 1}
                         </button>
@@ -232,7 +231,7 @@ const PropertiesIndex = ({ data }) => {
                 {page < pages?.length - 1 ?
                     <button 
                         onClick={() => setPage(page + 1)}
-                        className="mr-2 text-lg hover:text-primary transition-colors"
+                        className="mr-2 text-sm hover:text-primary transition-colors"
                     >
                         Next
                     </button>

@@ -26,6 +26,10 @@ html {
     font-family: 'Montserrat', sans-serif;
 }
 
+.section {
+    @apply py-20;
+}
+
 .text-secondary {
     font-family: 'Montserrat', sans-serif;
 }
