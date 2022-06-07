@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import Button from '../ui/Button'
+import { Link } from 'gatsby'
 import { FaPhoneAlt, FaPaperPlane } from 'react-icons/fa'
 
 const TeamCard = ({ _key, name, position, slug, image, contact, className}) => {
@@ -18,14 +19,14 @@ const TeamCard = ({ _key, name, position, slug, image, contact, className}) => {
                 <div className="flex flex-col absolute right-0 top-1/2 -translate-y-1/2">
                     {contact?.phone ?
                         <div className="flex flex-row items-center my-1" >
-                            <a href={`tel:+${contact.phone}`} className="p-3 bg-primary hover:bg-accent text-2xl text-textLight transition-colors">
+                            <a href={`tel:+${contact.phone}`} className="p-3 bg-primary hover:bg-accent text-sm text-textLight transition-colors">
                                 <FaPhoneAlt />
                             </a>
                         </div>
                     : null }
                     {contact?.email ?
                         <div className="flex flex-row items-center my-1" >
-                            <a href={`mailTo:${contact.email}`} className="p-3 bg-primary hover:bg-accent text-2xl text-textLight transition-colors">
+                            <a href={`mailTo:${contact.email}`} className="p-3 bg-primary hover:bg-accent text-sm text-textLight transition-colors">
                                 <FaPaperPlane />
                             </a>
                         </div>
@@ -34,17 +35,19 @@ const TeamCard = ({ _key, name, position, slug, image, contact, className}) => {
             </div>
             <div className="p-4 flex flex-col">
                 {name ?
-                    <h1 className="font-bold text-2xl">{name}</h1>
+                    <h2 className="font-bold text-lg">{name}</h2>
                 : null }
                 {position ?
-                <h2 className="text-primary font-bold text-sm">{position}</h2>
+                <h3 className="text-primary font-bold text-sm">{position}</h3>
                 : null }         
                 {slug ?
-                    <Button 
-                        link={`/team${slug}`}
+                    <Link 
+                        to={`/team${slug}`}
                         text="Learn More" 
-                        className="mt-4"
-                    />
+                        className="mt-4 italic"
+                    >
+                        Read more
+                    </Link>
                 : null }
             </div>
         </div>

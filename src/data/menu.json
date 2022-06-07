@@ -12,6 +12,11 @@
       "subMenu": null
     },
     {
+      "name": "Team",
+      "link": "/team",
+      "subMenu": null
+    },
+    {
       "name": "Blog",
       "link": "/blog",
       "subMenu": null

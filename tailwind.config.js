@@ -26,7 +26,7 @@ module.exports = {
           paddingLeft: '20px',
           paddingRight: '20px',
           '@screen xl': {
-            maxWidth: '1300px',
+            maxWidth: '1500px',
           },
         }
       })

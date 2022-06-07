@@ -20,13 +20,13 @@ const BlogCard = ({ _key, image, title, excerpt, date, slug }) => {
                 />
                 <div className="absolute bottom-0 left-0 bg-gradient-to-b from-black/0 to-black/90 h-20 w-full">
                     <div className="absolute bottom-4 left-4 flex flex-row items-center text-textLight">
-                        <h1 className="filter drop-shadow-md text-lg">{title}</h1>
+                        <h2 className="filter drop-shadow-md text-lg">{title}</h2>
                     </div>
                 </div>
             </div>
             <div className="py-2 flex-grow flex flex-col">
                 <p className="text-sm text-secondary m-2">{excerpt}</p>
-                <span className="ml-2 mt-auto text-xl text-primary font-bold">Read More...</span>
+                <span className="ml-2 mt-auto text-sm italic text-primary font-bold">Read More...</span>
             </div>
         </Link>
     )

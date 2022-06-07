@@ -6,17 +6,19 @@ import Seo from '../../components/global/Seo'
 
 const Team = ({ data }) => {
   const team = data.team.nodes
-    return(
-        <>
-        <Seo pageTitle="Team" />
-          <PageHeader image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} title={data.file.childMarkdownRemark.frontmatter.title} />
+  return (
+    <>
+      <Seo pageTitle="Team" />
+      <PageHeader image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} title={data.file.childMarkdownRemark.frontmatter.title} />
+      <div className="section">
+        <div className="container">
           <div className="max-w-screen-2xl mx-auto p-4 lg:p-8">
             <h1 className="text-3xl font-bold">Meet the Oak Blue Team</h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 my-8">
               {team?.map((teamData, i) => {
                 const team = teamData.childMarkdownRemark.frontmatter
-                return(
-                  <TeamCard 
+                return (
+                  <TeamCard
                     _key={i}
                     name={team.name}
                     position={team.position}
@@ -28,8 +30,10 @@ const Team = ({ data }) => {
               })}
             </div>
           </div>
-        </>
-    )
+        </div>
+      </div>
+    </>
+  )
 }
 
 export const PageQuery = graphql`

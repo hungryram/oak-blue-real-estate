@@ -32,6 +32,7 @@ html {
 
 .text-secondary {
     font-family: 'Montserrat', sans-serif;
+    @apply font-light;
 }
 
 h1,h2,h3,h4,h5{
@@ -96,7 +97,7 @@ h1,h2,h3,h4,h5{
 }
 
 .button{
-    @apply bg-primary filter hover:brightness-90 flex flex-row items-center py-3 px-7 text-lg text-textLight rounded-md max-w-fit transition-colors;
+    @apply bg-primary filter hover:brightness-90 flex flex-row items-center py-3 px-7 text-lg text-textLight max-w-fit transition-colors;
 }
 
 .videoTourWrapper {
