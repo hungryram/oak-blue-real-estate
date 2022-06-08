@@ -22,7 +22,7 @@ const PropertyCard = ({ _key, title, city, state, zipCode, details, slug, price,
                 </div>
             </div>
             <div className="p-2 flex flex-row items-center divide-x divide-textDark/10 py-4">
-                <span className="text-xl font-bold text-primary mr-auto">{price}</span>
+                <span className="font-medium text-primary mr-auto">{price}</span>
                 <div className="flex flex-col lg:flex-row items-center px-2 mr-2">
                     <BiBed className="text-xl mx-2 text-primary"/>
                     <span className="text-secondary">{details.bedrooms} Bed</span>

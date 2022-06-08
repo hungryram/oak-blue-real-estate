@@ -36,7 +36,7 @@ const PropertyTemplate = ({ data }) => {
             <ScheduleTour listing={listing.title}/>
             { listings ?
               <div className="flex flex-col my-4 mx-2 p-2 lg:m-5 lg:p-8 rounded-sm shadow-lg">
-                <h1 className="text-3xl font-bold">More Listings In {listing.zipCode}</h1>
+                <h1 className="text-xl font-medium">More Listings In {listing.zipCode}</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-4 py-4 border-t border-black/20 text-secondary">
                   {listings.map((listing, i) => {
                     return(

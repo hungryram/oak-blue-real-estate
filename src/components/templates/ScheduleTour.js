@@ -172,7 +172,7 @@ const ScheduleTour = ({ listing }) => {
                 <div className="lg:w-1/3 flex flex-row items-center justify-center">
                     <button
                         type="submit"
-                        className={`p-3 text-xl rounded-md leading-none text-secondary text-textLight font-bold my-8 lg:my-0 ${disabled ? 'bg-primary/60' : 'bg-primary hover:bg-primary/90'}`} 
+                        className={`py-3 px-10 text-xl leading-none text-secondary text-textLight font-bold my-8 lg:my-0 ${disabled ? 'bg-primary/60' : 'bg-primary hover:bg-primary/90'}`} 
                         disabled={disabled ? true : false}
                     >
                         Submit

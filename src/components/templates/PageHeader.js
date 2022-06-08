@@ -23,7 +23,7 @@ const PageHeader = ({ image, title, subTitle }) => {
                                 {subTitle ? 
                                     <div className="flex flex-row items-center">
                                         <Link to={`/${title.toLowerCase()}`} className="text-sm">{title}</Link>
-                                        <span className="mx-4 text-lg">||</span>
+                                        <span className="mx-4 text-lg">/</span>
                                     </div>
                                 : 
                                     <div className="flex flex-row items-center">

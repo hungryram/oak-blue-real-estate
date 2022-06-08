@@ -110,6 +110,14 @@ module.exports = {
   {
     resolve: 'gatsby-source-filesystem',
     options: {
+      "name": "legal",
+      "path": `${__dirname}/src/content/legal`
+    },
+    __key: "legal"
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
       "name": "about",
       "path": `${__dirname}/src/content/about`
     },
