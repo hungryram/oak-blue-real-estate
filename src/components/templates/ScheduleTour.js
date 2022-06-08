@@ -108,7 +108,7 @@ const ScheduleTour = ({ listing }) => {
             onSubmit={(e) => submitForm(e)}
         >
             <input type="hidden" name="bot-field" />
-            <h1 className="text-3xl font-bold">Request A Tour</h1>
+            <h1 className="text-xl font-medium">Request A Tour</h1>
             <div className="flex flex-col lg:flex-row mt-4 py-4 border-t border-black/20 text-secondary">
                 <div className="flex flex-col lg:p-4 lg:w-1/3">
                     <div className="flex flex-row items-center">
@@ -129,60 +129,36 @@ const ScheduleTour = ({ listing }) => {
                         <span className="text-lg font-bold">Enter Your Information:</span>
                     </div>
                     <div className="flex flex-col p-2 my-1">
-                        <label 
-                            htmlFor="schedule-tour-name"
-                            className="font-bold text-primary text-lg"
-                        >
-                            Name*
-                        </label>
                         <input
                             id="schedule-tour-name"
-                            name="Request Tour"
-                            placeholder="Enter Your Name"
+                            name="Name"
+                            placeholder="Name"
                             value={contact.name}
                             onChange={(e) => setContact({ name: e.target.value, email: contact.email, phone: contact.phone, message: contact.message })} 
                             className="formInput my-1"
                             type="text" 
                         />
-                        <label 
-                            htmlFor="schedule-tour-email"
-                            className="font-bold text-primary text-lg"
-                        >
-                            Email Address*
-                        </label>
                         <input
                             id="schedule-tour-email"
-                            name="Request Tour"
-                            placeholder="Enter Your Email"
+                            name="Email"
+                            placeholder="Email"
                             value={contact.email}
                             onChange={(e) => setContact({ name: contact.name, email: e.target.value, phone: contact.phone, message: contact.message })} 
                             className="formInput my-1"
                             type="email" 
                         />
-                        <label 
-                            htmlFor="schedule-tour-phone"
-                            className="font-bold text-primary text-lg"
-                        >
-                            Phone*
-                        </label>
                         <input
                             id="schedule-tour-phone"
-                            name="Request Tour"
-                            placeholder="Enter Your Phone #"
+                            name="Phone"
+                            placeholder="Phone"
                             value={contact.phone}
                             onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: e.target.value, message: contact.message })} 
                             className="formInput my-1"
                             type="tel" 
                         />
-                        <label 
-                            htmlFor="schedule-tour-message"
-                            className="font-bold text-primary text-lg"
-                        >
-                            Message
-                        </label>
                         <textarea
                             id="schedule-tour-message"
-                            name="Request Tour"
+                            name="Message"
                             placeholder="Enter Your Message"
                             value={contact.message}
                             onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: contact.phone, message: e.target.value })} 
@@ -213,7 +189,7 @@ const ScheduleTour = ({ listing }) => {
                             className="cursor-pointer scale-125 mr-1" 
                         />*
                     </div>    
-                    <label htmlFor="schedule-tour-confirm-info" className="text-secondary ml-2 text-sm leading-tight">I confirm that I would like to schedule a tour of the property listed at {listing} on {timeslot.date} at {timeslot.time}, understand that this form is only a request and that all tour schedulings must be confirmed by an agent, and have read and agree to the Oak Blue Real Estate <Link to="terms-of-service" className="text-primary hover:text-accent">terms of service</Link>.</label>
+                    <label htmlFor="schedule-tour-confirm-info" className="text-secondary ml-2 text-sm leading-tight">I confirm that I would like to schedule a tour of the property listed at {listing} on {timeslot.date} at {timeslot.time}, understand that this form is only a request and that all tour schedulings must be confirmed by an agent, and have read and agree to the Oak Blue Real Estate <Link to="/legal/terms-and-conditions/" className="text-primary hover:text-accent">terms and condition</Link>.</label>
                 </div>
             </div>
         </form>

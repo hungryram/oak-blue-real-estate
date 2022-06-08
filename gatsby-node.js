@@ -210,4 +210,23 @@ exports.onCreateNode = async ({ node, getNode, createNodeId, actions, store, cac
             }
         })
     }
+
+        // Generate Legal Nodes
+
+        if(node.internal.type === 'File' && node.sourceInstanceName === 'legal' && node.base !== '_index.md'){
+            const markdownNode = await getNode(node.children[0])
+            const slug = createFilePath({ node, getNode, basePath: `pages` })
+            createNode({
+                ...markdownNode,
+                id: `${node.id}-legal`,
+                slug: slug,
+                parent: node.id,
+                children: [`${markdownNode.id}`],
+                internal: {
+                    type: 'Legal',
+                    content: JSON.stringify(markdownNode),
+                    contentDigest: createContentDigest(markdownNode)
+                },
+            })  
+        }
 }
