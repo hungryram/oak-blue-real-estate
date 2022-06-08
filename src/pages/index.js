@@ -23,6 +23,7 @@ const Index = ({ data }) => {
               buttonText={section.buttonText}
               buttonLink={section.buttonLink}
               backgroundImage={section.backgroundImage} 
+              body={section.body}
             />
           )
         }
@@ -105,6 +106,7 @@ export const IndexQuery = graphql`
           sections {
             type
             heading
+            body
             subHeading
             caption
             textBlocks

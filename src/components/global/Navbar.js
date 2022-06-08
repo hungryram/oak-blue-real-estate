@@ -38,7 +38,7 @@ const Navbar = () => {
     let windowWidth = useWindowWidth()
 
     return (
-        <nav className="relative w-full h-24 bg-background z-50">
+        <nav className="lg:absolute relative w-full h-24 bg-background z-50">
             <Link to="/" className="absolute top-0 left-2 lg:left-16 xl:left-32">
                 <svg height="154" width="175">
                     <polygon className="fill-background" points="0 0, 175 0, 175 110,  87.5 154, 0 110" />
@@ -127,9 +127,8 @@ const Navbar = () => {
                 />
                 </div>
             </button>
-            <Link to="/contact" className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 flex-row items-center bg-primary hover:brightness-90 transition-colors rounded-md shadow-md py-3 px-5 text-textLight">
-                <BsTelephone className="text-sm" />
-                <span className="text-sm ml-3 text-secondary">Contact Us</span>
+            <Link to="/contact" className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 flex-row items-center bg-primary hover:brightness-90 transition-colors shadow-md py-3 px-8 text-textLight">
+                <span className="text-sm text-secondary uppercase">Contact Us</span>
             </Link>
         </nav>
     )

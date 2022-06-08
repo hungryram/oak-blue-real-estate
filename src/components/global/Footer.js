@@ -49,25 +49,25 @@ const Footer = () => {
                             />
                             <SocialLinks links={profile.social_media} className="my-8 grid grid-cols-4 gap-4" />
                         </div>
-                        <div className="flex flex-col mx-auto text-textLight">
+                        <div className="flex flex-col md:mx-auto text-textLight">
                             <h2 className="text-md tracking-tight font-bold">About Us</h2>
-                            <ul className="my-auto">
+                            <ul className="my-5">
                                 {footer.about_us?.map((link, i) => {
                                     return <li key={i} className="my-2" ><Link to={link.link} className="text-md hover:text-accent transition-colors">{link.name}</Link></li>
                                 })}
                             </ul>
                         </div>
-                        <div className="flex flex-col mx-auto my-8 lg:my-0 -translate-x-2 lg:translate-x-0 text-textLight">
+                        <div className="flex flex-col md:mx-auto text-textLight">
                             <h2 className="text-md tracking-tight font-bold">Quick Links</h2>
-                            <ul className="my-auto">
+                            <ul className="my-5">
                                 {footer.quick_links?.map((link, i) => {
                                     return <li key={i} className="my-2" ><Link to={link.link} className="text-md hover:text-accent transition-colors">{link.name}</Link></li>
                                 })}
                             </ul>
                         </div>
-                        <div className="flex flex-col mx-auto text-textLight items-center lg:items-start">
-                            <h2 className="text-md tracking-tight font-bold -translate-x-8 lg:translate-x-0">Contact</h2>
-                            <div className="my-auto">
+                        <div className="flex flex-col md:mx-auto text-textLight lg:items-start">
+                            <h2 className="text-md tracking-tight font-bold">Contact</h2>
+                            <div className="my-5">
                                 <div className="flex flex-row items-center my-4" >
                                     <a href={`tel:+${profile.contact_information.phone}`} className="rounded-full p-3 bg-accent hover:bg-textLight text-textLight hover:text-accent mr-3  transition-colors">
                                         <FaPhoneAlt className="text-xs" />

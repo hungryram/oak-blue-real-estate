@@ -1,13 +1,14 @@
 ---
 sections:
 - type: hero
-  heading: Oak Blue Real Estate
+  heading: Oak Blue Real Estate Group
+  body: Your trusted Sacramento Real Estate Team to help you find your dream home
   buttonText: View Properties
   buttonLink: /properties
   backgroundImage: ../../images/rich-interior2.jpg
 - type: about
   heading: Who We Are
-  subHeading: About Oak Blue
+  subHeading: About Oak Blue Real Estate Group
   caption: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
   list:
     - listItem: High quality products

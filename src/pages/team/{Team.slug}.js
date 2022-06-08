@@ -17,7 +17,7 @@ const TeamMember = ({ data }) => {
       <PageHeader image={data.file.childMarkdownRemark.frontmatter.headerImage.childImageSharp.gatsbyImageData} title={team.frontmatter.name} />
       <div className="section">
         <div className="container">
-          <div className="flex flex-col lg:flex-row lg:items center max-w-screen-2xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items center max-w-screen-2xl mx-auto md:gap-32 gap-16">
             <TeamCard
               name={team.frontmatter.name}
               position={team.frontmatter.position}
@@ -26,7 +26,7 @@ const TeamMember = ({ data }) => {
             />
             <div className="flex flex-col lg:w-2/3 px-2 py-8 lg:p-0 lg:ml-8">
               <h2 className="text-primary uppercase font-medium">{team.frontmatter.pageHeader}</h2>
-              <h1 className="font-bold text-3xl mt-2">About {firstName}</h1>
+              <h1 className="font-bold text-3xl mt-2">About {team.frontmatter.name}</h1>
               <div className="text-secondary my-4 md-content" dangerouslySetInnerHTML={{ __html: team.html }} />
               {team.frontmatter.contact ?
                 <>

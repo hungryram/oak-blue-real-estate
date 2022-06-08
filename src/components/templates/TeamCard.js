@@ -12,7 +12,7 @@ const TeamCard = ({ _key, name, position, slug, image, contact, className}) => {
                 {image ?
                     <GatsbyImage
                         image={image}
-                        alt={`Featured image for ${name ? name : null}, ${position ? position : null} at Oak Blue Real Estate.`}
+                        alt={`${name ? name : null}, ${position ? position : null}`}
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full"
                     />
                 : null }

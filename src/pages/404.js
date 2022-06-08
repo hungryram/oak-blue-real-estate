@@ -5,8 +5,8 @@ const NotFoundPage = () => {
   return (
     <>
       <Layout>
-        <div class="section">
-          <div class="container">
+        <div className="section">
+          <div className="container">
               <h1>Page not Found</h1>
               <p>Looks like the page might have been moved or deleted</p>
               <Link to="/">Return Home</Link>

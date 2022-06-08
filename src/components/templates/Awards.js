@@ -3,8 +3,8 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 
 const Awards = ({ _key, awards, heading, subHeading, backgroundImage }) => {
     return(
-        <div key={_key} className="relative h-96">
-            <GatsbyImage className="bg-primary h-full" image={backgroundImage.childImageSharp?.gatsbyImageData} alt="Awards & Recognition background"/>
+        <div key={_key} className="relative h-96 w-full">
+            <GatsbyImage className="bg-primary h-full w-full" image={backgroundImage.childImageSharp?.gatsbyImageData} alt="Awards & Recognition background"/>
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full flex flex-col items-center text-textLight ${backgroundImage.childImageSharp ? '' : 'bg-primary'}`}>
                 <h1 className="lg:text-xl uppercase mt-auto">{heading}</h1>
                 <h2 className="mt-2 text-3xl lg:text-4xl font-bold">{subHeading}</h2>

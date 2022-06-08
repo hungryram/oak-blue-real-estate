@@ -7,14 +7,14 @@ const PageHeader = ({ image, title, subTitle }) => {
         <div id="pageHeader" className="relative">
             <div className="relative bg-black/70 h-96 z-20">
                 <div className="flex flex-col absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-                    <h1 className="text-3xl lg:text-5xl font-bold text-textLight mt-8 mb-4 text-center whitespace-nowrap">{title}</h1>
+                    <h1 className="text-3xl lg:text-4xl font-light uppercase text-textLight mt-8 mb-4 text-center whitespace-nowrap">{title}</h1>
                     <div className="flex flex-row items-center justify-center text-textLight whitespace-nowrap">
                         {subTitle ?
                             null
                         :
                             <div className="flex flex-row items-center">
-                                <Link className="text-lg" to="/">Home</Link>
-                                <span className="mx-4 text-lg">||</span>
+                                <Link className="text-sm" to="/">Home</Link>
+                                <span className="mx-4 text-sm">/</span>
                             </div>
                         }
                         
@@ -22,12 +22,12 @@ const PageHeader = ({ image, title, subTitle }) => {
                             <>                  
                                 {subTitle ? 
                                     <div className="flex flex-row items-center">
-                                        <Link to={`/${title.toLowerCase()}`} className="text-lg">{title}</Link>
+                                        <Link to={`/${title.toLowerCase()}`} className="text-sm">{title}</Link>
                                         <span className="mx-4 text-lg">||</span>
                                     </div>
                                 : 
                                     <div className="flex flex-row items-center">
-                                        <span className="text-lg">{title}</span>
+                                        <span className="text-sm">{title}</span>
                                     </div>
                                 }       
                             </>
