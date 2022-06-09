@@ -2,7 +2,6 @@ const appearance = require('./src/data/appearance.json')
 const colors = appearance.branding.colors
 
 module.exports = {
-  important: '#galleryImage',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
