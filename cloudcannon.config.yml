@@ -1,11 +1,11 @@
 collections_config:
   blog:
-    path: "content/blog"
+    path: "src/content/blog"
     output: true
-    url: "content/blog/[slug]"
+    url: "src/content/blog/[slug]"
   team:
-    path: "content/team"
+    path: "src/content/team"
     output: true
-    url: "content/team/[slug]"
+    url: "src/content/team/[slug]"
 paths:
   uploads: /images
