@@ -159,6 +159,14 @@ textarea {
     @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full !important;
 }
 
+.galleryImageVisible {
+    @apply visible !important;
+}
+
+.galleryImageHidden {
+    @apply hidden !important;
+}
+
 .galleryWrapper {
     @apply relative m-2 lg:m-5 rounded-sm shadow-md;
     height: calc( 100vh / 1.8);
