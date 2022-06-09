@@ -69,7 +69,8 @@ const Gallery = ({ photos, title }) => {
             </button>
             {images?.map((image, i) => {
                 return(
-                    <GatsbyImage 
+                    <GatsbyImage
+                        id="#galleryImage"
                         key={i}
                         image={image.photo.childImageSharp.gatsbyImageData} 
                         alt={`Gallery Image ${i +1} for Oak Blue Real Estate Listing ${title}`}
