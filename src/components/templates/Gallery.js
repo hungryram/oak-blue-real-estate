@@ -70,11 +70,10 @@ const Gallery = ({ photos, title }) => {
             {images?.map((image, i) => {
                 return(
                     <GatsbyImage
-                        id="#galleryImage"
                         key={i}
                         image={image.photo.childImageSharp.gatsbyImageData} 
                         alt={`Gallery Image ${i +1} for Oak Blue Real Estate Listing ${title}`}
-                        className={`galleryImage transition-all ${display === i ? 'visible' : '!hidden'}`}
+                        className={`galleryImage transition-all ${display === i ? 'galleryImageVisible' : 'galleryImageHidden'}`}
                     />    
                 )
             })}
